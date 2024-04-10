@@ -182,7 +182,7 @@ def update_template(fig):
     return fig
 
 
-def display_animated_graph(selection, df_meta, df_globes, df_oscars):
+def display_animated_graph(selection, my_df_merged):
     """
         Displays the animated graph
 
@@ -195,13 +195,7 @@ def display_animated_graph(selection, df_meta, df_globes, df_oscars):
         Returns:
         fig: the figure to display
     """
-
-    df_meta_bis = transform_meta(df_meta)
-    df_globes_bis = tranform_globes(df_globes)
-    df_oscars_bis = tranform_oscars(df_oscars)
    
-    my_df_merged = merge_data(df_meta_bis, df_globes_bis, df_oscars_bis)
-
     create_custom_theme()
 
     animations = {

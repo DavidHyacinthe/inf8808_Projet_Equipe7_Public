@@ -21,33 +21,39 @@ from visualisation_4_b import create_visualisation_4_b
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
-server = app.server 
 
-oscar = pd.read_csv("./src/assets/data/the_oscar_award_withID.csv")
-globe = pd.read_csv("./src/assets/data/golden_globe_awards_withID.csv")
-meta = pd.read_csv("./src/assets/data/awards_metadata.csv")
+oscar = pd.read_csv("./assets/data/the_oscar_award_withID.csv")
+globe = pd.read_csv("./assets/data/golden_globe_awards_withID.csv")
+meta = pd.read_csv("./assets/data/awards_metadata.csv")
+
+app = dash.Dash(__name__)
+app.title = 'Projet Equipe 7 | INF8808'
 
 template.create_custom_theme()
 template.set_default_theme()
 
-#Preprocessing
-all_films = visualisation5.preprocessing_vis5(oscar, globe)
-
-vis1_df = vis_1.preprocess_vis1()
-vis1_df1 = vis_1.make_plot_df(vis1_df, 1)
-vis1_df2 = vis_1.make_plot_df(vis1_df, 2)
+#vis_1
+vis1_df = pd.read_feather('./assets/data/vis1_df.feather')
+vis1_df1 = pd.read_feather('./assets/data/vis1_df1.feather')
+vis1_df2 = pd.read_feather('./assets/data/vis1_df2.feather')
 list_cats = vis1_df.category.unique().tolist()
 list_cats.sort()
 list_cats.insert(0, 'All')
 
+#vis_2
+df_preprocessed_2 = pd.read_feather("./assets/data/df_preprocessed_2.feather")
+
 #vis_3 
-vis_3_df = vis_3.preprocess_vis3()
-vis_3_df1 = vis_3.make_plot_df(vis_3_df, 1)
+vis_3_df = pd.read_feather('./assets/data/vis_3_df.feather')
+vis_3_df1 = pd.read_feather('./assets/data/vis_3_df1.feather')
 vis3_list_cats = vis_3_df.category.unique().tolist()
 vis3_list_cats.insert(0, 'All')
 
-#vis4
+#vis_4
 df_actors_vis_4, df_actresses_vis_4, df_directors_vis_4, df_female_directors_vis_4, df_studio_vis_4 = preprocessing_visualisation_4()
+
+#vis_5
+vis_5_df = pd.read_feather("./assets/data/df_vis5.feather")
 
 #Figures
 fig1 = vis_1.vis1(vis1_df1, vis1_df2)
@@ -61,7 +67,7 @@ fig4a = create_visualisation_4_a(df_actors_vis_4, df_actresses_vis_4, df_directo
 fig4b = create_visualisation_4_b(df_studio_vis_4)
 
 fig5 = go.Figure()
-fig5 = visualisation5.heatmap_awards(fig= fig5, all_films= all_films, annot= True, sep= True)
+fig5 = visualisation5.heatmap_awards(fig= fig5, all_films= vis_5_df, annot= True, sep= True)
 
 fig6 = visualisation6.get_div_viz6(oscar, globe)
 
@@ -307,7 +313,7 @@ def update_vis1(sorting_option, cat_option, fig):
     Input("selection2", "value")
 )
 def callback(selection):
-    return(visualisation2.display_animated_graph(selection, meta, globe, oscar))
+    return(visualisation2.display_animated_graph(selection, df_preprocessed_2))
 
 @app.callback(
     Output('vis3', 'figure'),
