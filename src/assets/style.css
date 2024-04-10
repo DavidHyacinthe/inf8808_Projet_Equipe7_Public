@@ -1,0 +1,200 @@
+body {
+    font-family: 'Roboto Slab', 'sans-serif';
+    font-size: 16px;
+    background-color: #2A2B2E;
+    color: #fff;
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #fff;
+    padding: 25px 100px;
+    border-bottom: 2px solid #97939A;
+}
+
+main {
+    height: 100%;
+    padding-right: 25px;
+}
+
+h1 {
+    color: #fff;
+    font-family: 'Roboto Slab', 'serif';
+    font-size: 56px;
+    margin: 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+h2 {
+    color: #fff;
+    font-family: 'Roboto Slab', 'serif';
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 200px;
+}
+
+button {
+    padding: 10px 30px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 16px;
+}
+
+button:hover, button:active {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding-bottom: 20px; 
+}
+
+.all-viz-and-buttons-container{
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    padding: 0 100px;
+    align-items: center;
+}
+
+.viz-and-buttons-container{
+    display: flex;
+    align-items: center;
+}
+
+.viz-container {
+    flex: 1;
+    margin-left: 208px;
+    margin-right: 8px;
+}
+
+.buttons-and-menus-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-buttons-container {
+    display: flex;
+    align-items: center;
+}
+
+.radio-buttons-container-vis1 {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.dropdown-container-vis1 {
+    position: absolute;
+    top: 1370px;
+    left: 760px;
+    z-index: 1;
+}
+
+.dropdown-container-vis1 .Select-control {
+    font-size: 16px;
+    width: 200px;
+}
+
+.radio-buttons-container-vis3-usa {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-container-vis3 {
+    display: flex;
+    align-items: center;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+.dropdown-container-vis3 .Select-control {
+    font-size: 16px;
+    width: 200px;
+}
+
+.h-with-margins {
+    margin-right: 130px;
+    margin-left: 130px;
+    margin-top: 100px;
+}
+
+.vis6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 100px;
+    align-items: center;
+}
+
+.xy {
+    cursor: default;
+}
+
+#barchart {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+}
+
+#scatter {
+    width: 40%;
+    height: 75%;
+    margin: 10px;
+}
+
+#waffle {
+    width: 80%;
+    height: 75%;
+    margin: 10px;
+}
+
+#heatmap {
+    width: 40%;
+    height: 75%;
+    margin: 10px;
+}
+
+#vis2-description {
+    text-align: justify;
+}
+
+.vis6 > p {
+    text-align: justify;
+}
+
+.slide-container-vis6 {
+    width: 100%;
+}
+
+.all-viz-and-buttons-container > p{
+    text-align: justify;
+}
+
+#oscar-img{
+    position: absolute;
+    top: 50px;
+    left: -30px;
+    height: 550px;
+}
+
+#globe-img{
+    position: absolute;
+    top: -30px;
+    right: -150px;
+    height: 700px;
+}
+
