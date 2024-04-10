@@ -1,8 +1,8 @@
 import pandas as pd
 
-PATH_oscar = './assets/data/the_oscar_award_withID.csv'
-PATH_golden = './assets/data/golden_globe_awards_withID.csv'
-PATH_meta = './assets/data/awards_metadata.csv'
+PATH_oscar = './src/assets/data/the_oscar_award_withID.csv'
+PATH_golden = './src/assets/data/golden_globe_awards_withID.csv'
+PATH_meta = './src/assets/data/awards_metadata.csv'
 
 
 def preprocessing_visualisation4_oscar():
