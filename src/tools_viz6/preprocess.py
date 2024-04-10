@@ -114,7 +114,7 @@ class Clusterer:
             self.current = 0
             self.column_left += self.column_width + 1
             self.year = year
-            self.year_to_X[year] = range(self.column_left, self.column_left + self.column_width)
+            self.year_to_X[year] = tuple(range(self.column_left, self.column_left + self.column_width))
         else:
            raise ValueError
         X = self.column_left + self.current % self.column_width

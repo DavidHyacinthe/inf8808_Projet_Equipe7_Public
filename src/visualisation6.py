@@ -7,28 +7,33 @@ import copy
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
+import pandas as pd
+import json
 
 COLUMN_WIDTH = 1
 year_to_x = None
 
 
 def get_viz6(oscar_data, globe_data):
-    global year_to_x
-
-    oscar_data, globe_data = preproc.prepare_data(oscar_data, globe_data)
-    all_award = preproc.combine_awards(oscar_data, globe_data)
-    ranked_award = preproc.ranking(all_award)
-    del all_award
-    clustered_award, year_to_x = preproc.clustering(ranked_award, COLUMN_WIDTH)
-    del ranked_award
-    colored_award = preproc.colors(clustered_award)
-    del clustered_award
-    special_award = preproc.special_colors(colored_award)
-    del colored_award
-    spaced_award = preproc.space_awards(special_award, COLUMN_WIDTH)
-    del special_award
-    hovered_award = preproc.add_hover(spaced_award)
-    del spaced_award
+#     oscar_data, globe_data = preproc.prepare_data(oscar_data, globe_data)
+#     all_award = preproc.combine_awards(oscar_data, globe_data)
+#     ranked_award = preproc.ranking(all_award)
+#     del all_award
+#     clustered_award, year_to_x = preproc.clustering(ranked_award, COLUMN_WIDTH)
+#     del ranked_award
+#     colored_award = preproc.colors(clustered_award)
+#     del clustered_award
+#     special_award = preproc.special_colors(colored_award)
+#     del colored_award
+#     spaced_award = preproc.space_awards(special_award, COLUMN_WIDTH)
+#     del special_award
+#     hovered_award = preproc.add_hover(spaced_award)
+#     del spaced_award
+#     hovered_award = hovered_award.reset_index()
+#     hovered_award = hovered_award.to_feather("tools_viz6/data_vis6.feather")
+    hovered_award = pd.read_feather("src/tools_viz6/data_vis6.feather")
+#     with open("tools_viz6/year_to_x", 'w') as file:
+#         json.dump(year_to_x, file)
 
     fig = go.Figure()
 
@@ -186,8 +191,11 @@ def get_div_viz6(oscar_data, globe_data):
     return div
 
 def rangeslide_callback(value, fig):
+    with open("src/tools_viz6/year_to_x", 'r') as file:
+        year_to_x = json.loads(file.read())
+    print(year_to_x)
     min_value, max_value = min(value), max(value)
-    X_left = min(year_to_x[min_value])
-    X_right = max(year_to_x[max_value])
+    X_left = min(year_to_x[str(float(min_value))])
+    X_right = max(year_to_x[str(float(max_value))])
     fig['layout']['xaxis']['range'] = [X_left - 1, X_right + 1]
     return fig

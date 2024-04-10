@@ -23,9 +23,9 @@ app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
 server = app.server 
 
-oscar = pd.read_csv("./assets/data/the_oscar_award_withID.csv")
-globe = pd.read_csv("./assets/data/golden_globe_awards_withID.csv")
-meta = pd.read_csv("./assets/data/awards_metadata.csv")
+oscar = pd.read_csv("./src/assets/data/the_oscar_award_withID.csv")
+globe = pd.read_csv("./src/assets/data/golden_globe_awards_withID.csv")
+meta = pd.read_csv("./src/assets/data/awards_metadata.csv")
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
@@ -34,19 +34,19 @@ template.create_custom_theme()
 template.set_default_theme()
 
 #vis_1
-vis1_df = pd.read_feather('./assets/data/vis1_df.feather')
-vis1_df1 = pd.read_feather('./assets/data/vis1_df1.feather')
-vis1_df2 = pd.read_feather('./assets/data/vis1_df2.feather')
+vis1_df = pd.read_feather('./src/assets/data/vis1_df.feather')
+vis1_df1 = pd.read_feather('./src/assets/data/vis1_df1.feather')
+vis1_df2 = pd.read_feather('./src/assets/data/vis1_df2.feather')
 list_cats = vis1_df.category.unique().tolist()
 list_cats.sort()
 list_cats.insert(0, 'All')
 
 #vis_2
-df_preprocessed_2 = pd.read_feather("./assets/data/df_preprocessed_2.feather")
+df_preprocessed_2 = pd.read_feather("./src/assets/data/df_preprocessed_2.feather")
 
 #vis_3 
-vis_3_df = pd.read_feather('./assets/data/vis_3_df.feather')
-vis_3_df1 = pd.read_feather('./assets/data/vis_3_df1.feather')
+vis_3_df = pd.read_feather('./src/assets/data/vis_3_df.feather')
+vis_3_df1 = pd.read_feather('./src/assets/data/vis_3_df1.feather')
 vis3_list_cats = vis_3_df.category.unique().tolist()
 vis3_list_cats.insert(0, 'All')
 
@@ -54,7 +54,7 @@ vis3_list_cats.insert(0, 'All')
 df_actors_vis_4, df_actresses_vis_4, df_directors_vis_4, df_female_directors_vis_4, df_studio_vis_4 = preprocessing_visualisation_4()
 
 #vis_5
-vis_5_df = pd.read_feather("./assets/data/df_vis5.feather")
+vis_5_df = pd.read_feather("./src/assets/data/df_vis5.feather")
 
 #Figures
 fig1 = vis_1.vis1(vis1_df1, vis1_df2)
