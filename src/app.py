@@ -21,6 +21,7 @@ from visualisation_4_b import create_visualisation_4_b
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
+server = app.server 
 
 oscar = pd.read_csv("./src/assets/data/the_oscar_award_withID.csv")
 globe = pd.read_csv("./src/assets/data/golden_globe_awards_withID.csv")
