@@ -22,10 +22,6 @@ app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
 server = app.server 
 
-print("\n\n=======================")
-from os import listdir
-print(listdir("./"))
-print("=======================\n\n")
 oscar = pd.read_csv("assets/data/the_oscar_award_withID.csv")
 globe = pd.read_csv("assets/data/golden_globe_awards_withID.csv")
 meta = pd.read_csv("assets/data/awards_metadata.csv")
