@@ -24,7 +24,7 @@ server = app.server
 
 print("\n\n=======================")
 from os import listdir
-print(listdir("src/assets/data"))
+print(listdir("src/"))
 print("=======================\n\n")
 oscar = pd.read_csv("src/assets/data/the_oscar_award_withID.csv")
 globe = pd.read_csv("src/assets/data/golden_globe_awards_withID.csv")
