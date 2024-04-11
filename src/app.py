@@ -22,9 +22,9 @@ app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
 server = app.server 
 
-oscar = pd.read_csv("assets/data/the_oscar_award_withID.csv")
-globe = pd.read_csv("assets/data/golden_globe_awards_withID.csv")
-meta = pd.read_csv("assets/data/awards_metadata.csv")
+oscar = pd.read_csv("./assets/data/the_oscar_award_withID.csv")
+globe = pd.read_csv("./assets/data/golden_globe_awards_withID.csv")
+meta = pd.read_csv("./assets/data/awards_metadata.csv")
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
@@ -33,31 +33,31 @@ template.create_custom_theme()
 template.set_default_theme()
 
 #vis_1
-vis1_df = pd.read_feather('assets/data/vis1_df.feather')
-vis1_df1 = pd.read_feather('assets/data/vis1_df1.feather')
-vis1_df2 = pd.read_feather('assets/data/vis1_df2.feather')
+vis1_df = pd.read_feather('./assets/data/vis1_df.feather')
+vis1_df1 = pd.read_feather('./assets/data/vis1_df1.feather')
+vis1_df2 = pd.read_feather('./assets/data/vis1_df2.feather')
 list_cats = vis1_df.category.unique().tolist()
 list_cats.sort()
 list_cats.insert(0, 'All')
 
 #vis_2
-df_preprocessed_2 = pd.read_feather("assets/data/df_preprocessed_2.feather")
+df_preprocessed_2 = pd.read_feather("./assets/data/df_preprocessed_2.feather")
 
 #vis_3 
-vis_3_df = pd.read_feather('assets/data/vis_3_df.feather')
-vis_3_df1 = pd.read_feather('assets/data/vis_3_df1.feather')
+vis_3_df = pd.read_feather('./assets/data/vis_3_df.feather')
+vis_3_df1 = pd.read_feather('./assets/data/vis_3_df1.feather')
 vis3_list_cats = vis_3_df.category.unique().tolist()
 vis3_list_cats.insert(0, 'All')
 
 #vis_4
-df_actors_vis_4 = pd.read_feather("assets/data/vis_4_df_actors.feather")
-df_actresses_vis_4 = pd.read_feather("assets/data/vis_4_df_actresses.feather")
-df_directors_vis_4 = pd.read_feather("assets/data/vis_4_df_directors.feather")
-df_female_directors_vis_4 = pd.read_feather("assets/data/vis_4_df_female_directors.feather")
-df_studio_vis_4 = pd.read_feather("assets/data/vis_4_df_studio.feather")
+df_actors_vis_4 = pd.read_feather("./assets/data/vis_4_df_actors.feather")
+df_actresses_vis_4 = pd.read_feather("./assets/data/vis_4_df_actresses.feather")
+df_directors_vis_4 = pd.read_feather("./assets/data/vis_4_df_directors.feather")
+df_female_directors_vis_4 = pd.read_feather("./assets/data/vis_4_df_female_directors.feather")
+df_studio_vis_4 = pd.read_feather("./assets/data/vis_4_df_studio.feather")
 
 #vis_5
-vis_5_df = pd.read_feather("assets/data/df_vis5.feather")
+vis_5_df = pd.read_feather("./assets/data/df_vis5.feather")
 
 #Figures
 fig1 = vis_1.vis1(vis1_df1, vis1_df2)
@@ -119,8 +119,8 @@ app.layout = html.Div(
                                                                       showTips = False,
                                                                       showAxisDragHandles = False,
                                                                       doubleClick = False,
-                                                                      displayModeBar = False)
-                                           )]),
+                                                                      displayModeBar = False)),
+                                                    ]),
                                     html.Div(
                                             className = "radio-buttons-container-vis1",
                                             children = [
@@ -130,7 +130,9 @@ app.layout = html.Div(
                                                             value = 'Oscars et Golden Globes',
                                                             labelStyle = {'whiteSpace': 'nowrap'}
                                                             
-                                            )]),
+                                            ),
+                                                    ],
+                                            ),
                                     html.Div(
                                             className = "dropdown-container-vis1",
                                             children = [
@@ -138,7 +140,12 @@ app.layout = html.Div(
                                                     id = 'vis1_cats',
                                                     options = list_cats,
                                                     value = 'All'
-                                             )])
+                                             ),
+                                                    ],
+                        ),
+                                    dcc.Store(id = 'dfs-store', data = {
+                                                                        'df1': vis1_df1.to_json(), 
+                                                                        'df2': vis1_df2.to_json()})
                         ]),
                 
                 
@@ -244,6 +251,7 @@ app.layout = html.Div(
                                                                   value=1,  # Default value to exclude USA
                                                                   labelStyle={'whiteSpace': 'nowrap'}
                                                   )]),
+                                                 dcc.Store(id='intermediate-value')
                                     ]),
                         ]),
                 
@@ -295,32 +303,37 @@ app.layout = html.Div(
  
 
 
+
 @app.callback(
-    Output('vis1', 'figure'),
+    [Output('vis1', 'figure'),
+     Output('dfs-store', 'data')],
     [Input('vis1_sorting', 'value'),
      Input('vis1_cats', 'value')],
-    [State('vis1', 'figure')]
+    [State('vis1', 'figure'),
+     State('dfs-store', 'data')]
 )
-def update_vis1(sorting_option, cat_option, fig):
+def update_vis1(sorting_option, cat_option, fig, stored_data):
     ctx = dash.callback_context
     
-    if not ctx.triggered:
-        raise dash.exceptions.PreventUpdate
+    if not ctx.triggered: raise dash.exceptions.PreventUpdate
 
     triggered_input = ctx.triggered[0]['prop_id'].split('.')[0]
 
-    if triggered_input == 'vis1_sorting':
-        if sorting_option is None:
-            raise dash.exceptions.PreventUpdate
-        if sorting_option == "Oscars et Golden Globes":
-            sorting_option = 'Total'
-        fig = vis_1.update_sorting(sorting_option, fig, vis1_df1, vis1_df2)
-    elif triggered_input == 'vis1_cats':
-        if cat_option is None:
-            raise dash.exceptions.PreventUpdate
-        fig = vis_1.update_category(cat_option, fig, vis1_df)
+    if triggered_input == 'vis1_cats':
+        if cat_option is None: raise dash.exceptions.PreventUpdate
+        fig, df1, df2 = vis_1.update_category(cat_option, fig, vis1_df)
+    else:
+        df1 = pd.read_json(stored_data.get('df1'))
+        df2 = pd.read_json(stored_data.get('df2'))
+    
+    if sorting_option is None: raise dash.exceptions.PreventUpdate
+    if sorting_option == "Oscars et Golden Globes":
+        if triggered_input == 'vis1_cats':
+            return [fig, {'df1': df1.to_json(), 'df2': df2.to_json()}]
+        else: sorting_option = 'Total'
+    fig = vis_1.update_sorting(sorting_option, fig, df1, df2)
 
-    return fig
+    return [fig, {'df1': df1.to_json(), 'df2': df2.to_json()}]
 
 @app.callback(
     Output("vis2", "figure"), 
@@ -330,36 +343,32 @@ def callback(selection):
     return(visualisation2.display_animated_graph(selection, df_preprocessed_2))
 
 @app.callback(
-    Output('vis3', 'figure'),
+    Output('intermediate-value', 'data'),
     [Input('vis3_sorting', 'value'),
      Input('vis3_cats', 'value'),
-     Input('include_usa', 'value')],
-    [State('vis3', 'figure'),]
+     Input('include_usa', 'value')]
 )
-def update_vis3(sorting_option, cat_option, usa_option, fig):
+def update_intermediate(sorting_option, cat_option, usa_option):
     ctx = dash.callback_context
-    global vis_3_df1
     if not ctx.triggered:
         raise dash.exceptions.PreventUpdate
-
-    triggered_input = ctx.triggered[0]['prop_id'].split('.')[0]
-
-    if triggered_input == 'vis3_sorting':
-        if sorting_option is None:
-            raise dash.exceptions.PreventUpdate
-        if sorting_option == "Oscar et Golden Globe":
+    if sorting_option == "Oscar et Golden Globe":
             sorting_option = 'Total'
-        fig = vis_3.update_sorting(sorting_option, fig, vis_3_df1)
-    elif triggered_input == 'vis3_cats':
-        if cat_option is None:
-            raise dash.exceptions.PreventUpdate
-        fig = vis_3.update_category(cat_option, fig, vis_3_df, usa_option)
-    elif triggered_input == 'include_usa':
-        if usa_option is None:
-            raise dash.exceptions.PreventUpdate
-        vis_3_df1 = vis_3.make_plot_df(vis_3_df, usa_option)
-        fig = vis_3.vis3(vis_3_df1)
+    filtered_df = vis_3.update_dataframe(sorting_option,cat_option, vis_3_df, usa_option)
+    return filtered_df.to_json(date_format='iso', orient='split')
 
+@app.callback(
+    Output('vis3', 'figure'),
+    Input('intermediate-value', 'data'),
+    [State('vis3', 'figure'),]
+)
+def update_vis3(json_filtered_data, fig):
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        raise dash.exceptions.PreventUpdate
+    
+    dff = pd.read_json(json_filtered_data, orient='split')
+    fig = vis_3.update_figure(fig,dff)
     return fig
 
 @app.callback(
@@ -371,4 +380,4 @@ def update_vis6(value, fig):
     return visualisation6.rangeslide_callback(value, fig)
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port = 8055)

@@ -16,10 +16,10 @@ def preprocess_vis1():
   # osc_df = pd.read_csv('.\\assets\\data\\the_oscar_award_withID.csv')
   # meta_df = pd.read_csv('.\\assets\\data\\awards_metadata.csv')
   # key_df = pd.read_csv('.\\assets\\data\\awards_keywords.csv')
-  gg_df = pd.read_csv('assets/data/golden_globe_awards_withID.csv')
-  osc_df = pd.read_csv('assets/data/the_oscar_award_withID.csv')
-  meta_df = pd.read_csv('assets/data/awards_metadata.csv')
-  key_df = pd.read_csv('assets/data/awards_keywords.csv')
+  gg_df = pd.read_csv('./assets/data/golden_globe_awards_withID.csv')
+  osc_df = pd.read_csv('./assets/data/the_oscar_award_withID.csv')
+  meta_df = pd.read_csv('./assets/data/awards_metadata.csv')
+  key_df = pd.read_csv('./assets/data/awards_keywords.csv')
 
   #keeping only those who won, putting aside those who won atypical categories and removing them from main df
   gg_df.category = gg_df.category.str.title()
@@ -362,23 +362,27 @@ def update_category(cat, fig, og_df):
     df = og_df.copy()[og_df['category'] == cat]
   else:
     df = og_df.copy()
-  plot_df1 = make_plot_df(df, 1).iloc[:5, :].fillna(0)
-  plot_df2 = make_plot_df(df, 2).iloc[:5, :].fillna(0)
+  df1 = make_plot_df(df, 1).iloc[:5, :].fillna(0)
+  df2 = make_plot_df(df, 2).iloc[:5, :].fillna(0)
   
-  y_vals1 = plot_df1.iloc[::-1, 0].to_list()
-  y_vals2 = plot_df2.iloc[::-1, 0].to_list()
+  y_vals1 = df1.iloc[:, 0].to_list()
+  y_vals2 = df2.iloc[:, 0].to_list()
+  df1 = df1.iloc[::-1]
+  df2 = df2.iloc[::-1]
  
-  awr_lst = ['Golden Globes Percent', 'Oscars Percent',]  
+  awr_lst = ['Golden Globes', 'Oscars']
   
   for i in range(4):
     col_name = awr_lst[(i + 1) % 2]
     if i < 2:
-      fig['data'][i]['x'] = plot_df1.sort_values(col_name)[col_name]
+      fig['data'][i]['x'] = df1[col_name + ' Percent']
       fig['data'][i]['y'] = y_vals1
+      fig['data'][i]['customdata'] = df1[col_name]
     else:
-      fig['data'][i]['x'] = plot_df2.sort_values(col_name)[col_name]
+      fig['data'][i]['x'] = df2[col_name + ' Percent']
       fig['data'][i]['y'] = y_vals2
+      fig['data'][i]['customdata'] = df2[col_name]
   
   fig = add_annotations(fig, y_vals1, y_vals2)
   
-  return fig
+  return fig, df1, df2

@@ -5,9 +5,9 @@ import re
 from plotly.subplots import make_subplots
 
 def preprocess_vis3():
-  gg_df = pd.read_csv('assets/data/golden_globe_awards_withID.csv')
-  osc_df = pd.read_csv('assets/data/the_oscar_award_withID.csv')
-  meta_df = pd.read_csv('assets/data/awards_metadata.csv')
+  gg_df = pd.read_csv('./assets/data/golden_globe_awards_withID.csv')
+  osc_df = pd.read_csv('./assets/data/the_oscar_award_withID.csv')
+  meta_df = pd.read_csv('./assets/data/awards_metadata.csv')
 
   #keeping only those who won, putting aside those who won atypical categories and removing them from main df
   gg_df.category = gg_df.category.str.title()
@@ -189,50 +189,30 @@ def add_annotations(fig, y_vals):
   
   return fig
 
+# Function to update the DataFrame based on the category or sorting criteria
+def update_dataframe(sort_col, cat, initial_df, usa_option):
+    if cat != 'All':
+      df = initial_df.copy()[initial_df['category'] == cat]
+    else:
+      df = initial_df.copy()
+    df = make_plot_df(df, usa_option)
+    if sort_col == 'Total':
+      df = df.sort_values(sort_col, ascending=False).reset_index(drop=True).iloc[:5, :]
+    else:
+      df = df.sort_values([sort_col, 'Total'], ascending=False).reset_index(drop=True).iloc[:5, :]
 
-#function that updates the content of the plots according to the radio button the user pressed
-def update_sorting(sort_col, fig, plot_df):
-  if sort_col == 'Total':
-    df = plot_df.copy().sort_values(sort_col, ascending = False).reset_index(drop = True).iloc[:5, :]
-  else:
-    df = plot_df.copy().sort_values([sort_col, 'Total'], ascending = False).reset_index(drop = True).iloc[:5, :]
-  
-  y_vals = df.iloc[:, 0].to_list()
-  df = df.iloc[::-1]
-  
-  awr_lst = ['Golden Globe Percent', 'Oscar Percent',]
-  
-  for i in range(2):
-    col_name = awr_lst[(i + 1) % 2]
-    fig['data'][i]['x'] = df[col_name]
-    fig['data'][i]['y'] = y_vals
-  
-  fig = add_annotations(fig, y_vals)
-  
-  return fig
+    return df.iloc[:5, :].fillna(0)
 
+# Function to update the figure based on the data in the DataFrame
+def update_figure(fig, plot_df):
+    y_vals = plot_df.iloc[:, 0].to_list()
+    plot_df = plot_df.iloc[::-1]
 
-#function that updates which category the visualization is limited to
-'''
-    TO-DO: when implementing it on dash, 
-'''
-def update_category(cat, fig, og_df, flag):
-  if cat != 'All':
-    df = og_df.copy()[og_df['category'] == cat]
-  else:
-    df = og_df.copy()
-  plot_df = make_plot_df(df, flag).iloc[:5, :].fillna(0)
-  
-  y_vals = plot_df.iloc[:, 0].to_list()
-  plot_df = plot_df.iloc[::-1]
- 
-  awr_lst = ['Golden Globe Percent', 'Oscar Percent',]  
-  
-  for i in range(2):
-    col_name = awr_lst[(i + 1) % 2]
-    fig['data'][i]['x'] = plot_df[col_name]
-    fig['data'][i]['y'] = y_vals
-  
-  fig = add_annotations(fig, y_vals)
-  
-  return fig
+    awr_lst = ['Golden Globe Percent', 'Oscar Percent',]
+
+    for i in range(2):
+        col_name = awr_lst[(i + 1) % 2]
+        fig['data'][i]['x'] = plot_df[col_name]
+        fig['data'][i]['y'] = y_vals
+
+    return add_annotations(fig, y_vals)
