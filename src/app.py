@@ -20,7 +20,6 @@ from visualisation_4_b import create_visualisation_4_b
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
-server = app.server 
 
 oscar = pd.read_csv("./assets/data/the_oscar_award_withID.csv")
 globe = pd.read_csv("./assets/data/golden_globe_awards_withID.csv")
@@ -99,9 +98,9 @@ app.layout = html.Div(
                         "Malgré de telles disparités parmi les catégories, on retrouve souvent les mêmes genres et mots-clés parmi les films lauréats.",
                         html.Br(),
                         "Cependant, certaines différences sont indéniables, avec l'exemple du prix de la meilleure actrice. Aux Golden Globes, un mot-clé que l'on trouve " + \
-                        "souvent au sein des films dramas lauréats est \"woman director\", créant un contraste alarmant avec les Oscars, où un mot-clé commun parmi les films lauréats du même prix est \"rape\". " + \
+                        "souvent au sein des films dramas lauréats est \"woman director\", créant un contraste avec les Oscars, où un mot-clé commun parmi les films lauréats du même prix est \"rape\". " + \
                         "Une telle différence mènerait une personne à se demander si les deux cérémonies cherchent réellement les mêmes critères en dépit d'un consensus vis-à-vis des récompenses dans leur ensemble, et si ces mots-clés sont des coïncidences ou représentent " + \
-                        "la place de la femme au coeur de l'industrie cinématographique, si ce n'est dans ces cérémonies spécifiquement." + \
+                        "la place de la femme au coeur de l'industrie cinématographique, si ce n'est dans ces cérémonies spécifiquement. " + \
                         "Nous vous invitons à explorer le graphique ci-dessous et de juger par vous-même en arrivant à votre propre conclusion."
                        ]),
                 html.Div(
@@ -190,15 +189,14 @@ app.layout = html.Div(
                                                                          labelStyle = {'whiteSpace': 'nowrap'}
                                              )]),
                         ]),
-           
-                html.P("Lorem ipsum dolor sit amet, \
-                        consectetur adipiscing elit. Sed non risus. \
-                        Suspendisse lectus tortor, dignissim sit amet, \
-                        adipiscing nec, ultricies sed, dolor. \
-                        Cras elementum ultrices diam. Maecenas ligula massa, \
-                        varius a, semper congue, euismod non, mi. Proin porttitor, \
-                        orci nec nonummy molestie, enim est eleifend mi, \
-                        non fermentum diam nisl sit amet erat. Duis semper."),
+                
+                html.H3("Les récompenses dans le monde",
+                                className = 'h-with-margins'),
+                html.P("Dans cette nouvelle figure, vous pouvez découvrir quels \
+                    pays reçoivent le plus de récompenses. \
+                    Les Etats Unis d'Amérique reçoivent plus de 80% des prix, \
+                    Vous pouvez choisir de les afficher ou non dans la figure.",
+                    className = 'p-with-margins'),
                 
                 html.Div(
                         className = 'viz-and-buttons-container',
@@ -256,15 +254,24 @@ app.layout = html.Div(
                 html.H3("Qui gagne les récompenses ?",
                                 className = 'h-with-margins'),
                 
-                html.P("Lorem ipsum dolor sit amet, \
-                        consectetur adipiscing elit. Sed non risus. \
-                        Suspendisse lectus tortor, dignissim sit amet, \
-                        adipiscing nec, ultricies sed, dolor. \
-                        Cras elementum ultrices diam. Maecenas ligula massa, \
-                        varius a, semper congue, euismod non, mi. Proin porttitor, \
-                        orci nec nonummy molestie, enim est eleifend mi, \
-                        non fermentum diam nisl sit amet erat. Duis semper."),
-                
+                html.P("Les figures suivantes montrent les récompenses obtenues par \
+                    les personnalités les plus récompensées. \
+                    Chaque case représente une récompense obtenue, \
+                    la couleur correspond à la catégorie. \
+                    Toutes les récompenses sont dans l'ordre chronologique.",
+                    className = 'p-with-margins'),
+                        
+                html.P("Vous pouvez observer que les acteurs et actrices recoivent\
+                    beaucoup plus de Globes que d'Oscars, parce que les Globes de \
+                    meilleur acting sont divisés en quatre sous catégories chaque année : \
+                    Meilleure Actrice dans un Drame, Meilleur Acteur dans un Drame, \
+                    Meilleure Actrice dans une Comédie, Meilleur Acteur dans une comédie.",
+                        className = 'p-with-margins'),
+                html.P("Vous pouvez aussi remarquer que les femmes reçoivent très peu \
+                    souvent de prix pour la Meilleure Réalisation. \
+                    Seulement deux femmes ont reçu ce prix dans l'histoire : \
+                        Kathryn Bigelow et Barbra Streisand.",
+                        className = 'p-with-margins'),
                 
                 dcc.Graph(id="vis4a",
                           className= "waffle",
@@ -275,6 +282,10 @@ app.layout = html.Div(
                                         displayModeBar = False),
                           figure=fig4a),
                 
+                html.P("Sur la figure suivante, vous pouvez observer les \
+                    compagnies qui ont reçu le plus de récompenses.",
+                        className = 'p-with-margins'),
+                
                 dcc.Graph(id="vis4b",
                           className= "waffle",
                           config = dict(scrollZoom = False,
@@ -284,19 +295,22 @@ app.layout = html.Div(
                                         displayModeBar = False),
                           figure=fig4b),
                 
-                html.H3("Quels sont les relations entre récompenses ?",
+                html.H3("Quelles sont les relations entre récompenses ?",
                     className = 'h-with-margins'),
                                 
                 html.P("La visualisation suivante permet d'identifier les récompenses \
                        qui sont souvent obtenues par un même film, ou à l'inverse  \
-                           qui sont rarement obtenues par un même film."),
+                           qui sont rarement obtenues par un même film.",
+                           className = 'p-with-margins'),
                 html.P("Par exemple, les récompenses Oscar du Meilleur Film et \
                     Oscar du Meilleur réalisateur sont souvent obtenues ensemble. \
                         A l'inverse, Les films qui remportent le Globe du Meilleur Film (Comedie) \
-                            ne remportent que rarement l'Oscar du Meilleur scénario original."),
+                            ne remportent que rarement l'Oscar du Meilleur scénario original.",
+                            className = 'p-with-margins'),
                 html.P("Les données affichées dans la figure sont des probabilités conditionnelles, \
                     c'est à dire la probabilité qu'un film obtienne une récompense sachant \
-                        qu'il en a reçu une autre."),
+                        qu'il en a reçu une autre.",
+                        className = 'p-with-margins'),
                 
                 dcc.Graph(id="vis5",
                           className= "heatmap",
@@ -384,6 +398,16 @@ def update_vis3(json_filtered_data, fig):
 )
 def update_vis6(value, fig):
     return visualisation6.rangeslide_callback(value, fig)
+
+@app.callback(
+    Output('vis6-rangeSlider', 'value'),
+    Input('vis6-rangeSlider', 'value')
+)
+def slider_minimum_gap(value):
+    min_val, max_val = min(value), max(value)
+    if max_val - min_val < 5:
+        max_val = min_val + 5
+    return [min_val, max_val]
 
 if __name__ == '__main__':
     app.run_server(debug=True, port = 8055)

@@ -73,7 +73,8 @@ def get_figure(data, column_width):
     year_range = range(int(min(data['year_ceremony'])), int(max(data['year_ceremony'])) + 1)
     year_labels = [['' for col in range(column_width + 1)] for year in year_range]
     for i in range(len(year_range)):
-        year_labels[i][column_width // 2] = str(year_range[i])
+        if year_range[i] % 5 == 0:
+            year_labels[i][column_width // 2] = str(year_range[i])
 
     year_labels = [item for row in year_labels for item in row]
     year_mapping = {i: year_labels[i] for i in range(max(data['X']) + 1)}
@@ -82,7 +83,8 @@ def get_figure(data, column_width):
         dragmode=False,
         xaxis=dict(tickmode='array',
                    tickvals=data['X'],
-                   ticktext=[year_mapping[x] for x in data['X']]),
+                   ticktext=[year_mapping[x] for x in data['X']],
+                   tickangle = -60),
         yaxis = dict(showticklabels=False,),
     )
 
