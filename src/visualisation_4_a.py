@@ -4,14 +4,18 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+from template import COLORS, create_custom_theme
+
+create_custom_theme()
+
 n = 6 # nombre de prix
-colorscale =    [[0, '#e5ecf6'], #Rien
-                [1/n, '#00b0f0'], # Oscar meilleur réalisation
-                [2/n, '#7030a0'], # Oscar meilleur acteur/actrice
-                [3/n, '#d86dcd'], # Oscar meilleur role secondaire
-                [4/n, '#ff0000'], # Golden Globe meilleur réalisation
-                [5/n, '#ffc000'], # Golden Globe meilleur acteur/actrice
-                [6/n, '#ffff00']] # Golden Globe meilleur role secondaire
+colorscale =    [[0, '#2a2b2e'], #Rien
+                [1/n, COLORS['oscar_dark']], # Oscar meilleur réalisation
+                [2/n, COLORS['oscar_base']], # Oscar meilleur acteur/actrice
+                [3/n, COLORS['oscar_light']], # Oscar meilleur role secondaire
+                [4/n, COLORS['globe_dark']], # Golden Globe meilleur réalisation
+                [5/n, COLORS['globe_base']], # Golden Globe meilleur acteur/actrice
+                [6/n, COLORS['globe_light']]] # Golden Globe meilleur role secondaire
 
 convert = {'Oscar': {'DIRECTING': 1, 'ACTOR': 2, 'ACTOR IN A SUPPORTING ROLE': 3, 'ACTRESS': 2, 'ACTRESS IN A SUPPORTING ROLE': 3}, 'Golden Globe': {'DIRECTING': 4, 'ACTOR': 5, 'ACTOR IN A SUPPORTING ROLE': 6, 'ACTRESS': 5, 'ACTRESS IN A SUPPORTING ROLE': 6}}
 
@@ -44,7 +48,13 @@ def create_heatmap_actors(df_actors):
         z_actors_hover.append([])
     for hoverline in z_actors_hover:
         for missing_column in range(10-len(hoverline)):
-            hoverline.append(None)
+            hoverline.append("")
+            
+    # Convertis tout les 0 de z_actors en None pour ne pas les afficher
+    for i in range(len(z_actors)):
+        for j in range(len(z_actors[i])):
+            if z_actors[i][j] == 0:
+                z_actors[i][j] = None
 
     heatmap_actor = go.Heatmap(
         y=actors_list, z=z_actors,
@@ -54,7 +64,8 @@ def create_heatmap_actors(df_actors):
         showscale=False,
         zmin=0,
         zmax=1,
-        hovertemplate='%{text}<extra></extra>'
+        hovertemplate='%{text}<extra></extra>',
+        hoverongaps=False
     )
     
     return heatmap_actor
@@ -88,7 +99,13 @@ def create_heatmap_actresses(df_actresses):
         z_actresses_hover.append([])
     for hoverline in z_actresses_hover:
         for missing_column in range(10-len(hoverline)):
-            hoverline.append(None)
+            hoverline.append("")
+            
+    # Convertis tout les 0 de z_actresses en None pour ne pas les afficher
+    for i in range(len(z_actresses)):
+        for j in range(len(z_actresses[i])):
+            if z_actresses[i][j] == 0:
+                z_actresses[i][j] = None
 
     heatmap_actresses = go.Heatmap(
         y=actresses_list, z=z_actresses,
@@ -98,7 +115,8 @@ def create_heatmap_actresses(df_actresses):
         showscale=False,
         zmin=0,
         zmax=1,
-        hovertemplate='%{text}<extra></extra>'
+        hovertemplate='%{text}<extra></extra>',
+        hoverongaps=False
     )    
 
     return heatmap_actresses
@@ -132,7 +150,13 @@ def create_heatmap_directors(df_directors):
         z_directors_hover.append([])
     for hoverline in z_directors_hover:
         for missing_column in range(10-len(hoverline)):
-            hoverline.append(None)
+            hoverline.append("")
+            
+    # Convertis tout les 0 de z_directors en None pour ne pas les afficher
+    for i in range(len(z_directors)):
+        for j in range(len(z_directors[i])):
+            if z_directors[i][j] == 0:
+                z_directors[i][j] = None
 
     heatmap_director = go.Heatmap(
         y=directors_list, z=z_directors,
@@ -142,7 +166,8 @@ def create_heatmap_directors(df_directors):
         showscale=False,
         zmax=1,
         zmin=0,
-        hovertemplate='%{text}<extra></extra>'
+        hovertemplate='%{text}<extra></extra>',
+        hoverongaps=False
     )
     
     return heatmap_director
@@ -164,10 +189,7 @@ def create_heatmap_female_directors(df_female_directors):
         column = 0
         for index, row in df_single_female_director.iterrows():
             z_female_directors[female_director][column] = convert[row['ceremony']][row['category']]
-            if z_female_directors[female_director][column] >0:
-                hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
-            else:
-                hover.append(None)
+            hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
             column += 1
         z_female_directors_hover.append(hover)
         female_director += 1
@@ -178,7 +200,13 @@ def create_heatmap_female_directors(df_female_directors):
         z_female_directors_hover.append([])
     for hoverline in z_female_directors_hover:
         for missing_column in range(10-len(hoverline)):
-            hoverline.append(None)
+            hoverline.append("")
+            
+    # Convertis tout les 0 en None pour ne pas les afficher
+    for i in range(len(z_female_directors)):
+        for j in range(len(z_female_directors[i])):
+            if z_female_directors[i][j] == 0:
+                z_female_directors[i][j] = None
 
     # Remplissage du reste des noms
     female_directors_list.append(" ")
@@ -198,7 +226,8 @@ def create_heatmap_female_directors(df_female_directors):
         showscale=False,
         zmin=0,
         zmax=1,
-        hovertemplate='%{text}<extra></extra>'
+        hovertemplate='%{text}<extra></extra>',
+        hoverongaps=False
     )
 
     return heatmap_female_director
@@ -219,12 +248,12 @@ def create_visualisation_4_a(df_actors, df_actresses, df_directors, df_female_di
     fig_visualisation_4_a.add_trace(heatmap_female_directors, row=4, col=1)
 
     fig_visualisation_4_a.update_layout(height=1500, width=1000, #à ajuster en fonction des besoins
-                    title_text="Visualisation 4.a")
+                    title_text="Personnes ayant gagnés le plus de prix")
 
     # Légende
     categories = ['Oscar: Meilleur réalisation', 'Oscar: Meilleur acting', 'Oscar: Meilleur second rôle',
                 'Golden Globe: Meilleur réalisation', 'Golden Globe: Meilleur acting', 'Golden Globe: Meilleur second rôle']
-    colors = ['#00b0f0', '#7030a0', '#d86dcd', '#ff0000', '#ffc000', '#ffff00']
+    colors = [COLORS['oscar_dark'], COLORS['oscar_base'], COLORS['oscar_light'], COLORS['globe_dark'], COLORS['globe_base'], COLORS['globe_light']]
 
     fig_visualisation_4_a.update_layout(xaxis=dict(zeroline=False, showgrid=False),
                         yaxis=dict(zeroline=False, showgrid=False))

@@ -191,7 +191,7 @@ def get_div_viz6(oscar_data, globe_data):
     return div
 
 def rangeslide_callback(value, fig):
-    with open("src/tools_viz6/year_to_x", 'r') as file:
+    with open("tools_viz6/year_to_x", 'r') as file:
         year_to_x = json.loads(file.read())
     print(year_to_x)
     min_value, max_value = min(value), max(value)

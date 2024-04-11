@@ -18,12 +18,20 @@ THEME = {
     'axis' : 'white'
 }
 
+# COLORS = {'oscar_base': '#d545f4',
+#           'oscar_light': '#e8bef4',
+#           'oscar_dark': '#8609a1',
+#           'globe_base': '#f5c136', 
+#           'globe_light': '#f3d584',
+#           'globe_dark': '#ed9e1b',
+#           'both_base': '#44ed1b'}
+
 COLORS = {'oscar_base': '#d545f4',
           'oscar_light': '#e8bef4',
           'oscar_dark': '#8609a1',
           'globe_base': '#f5c136', 
-          'globe_light': '#f3d584',
-          'globe_dark': '#ed9e1b',
+          'globe_light': '#ffdf89',
+          'globe_dark': '#bd8d0a',
           'both_base': '#44ed1b'}
 
 

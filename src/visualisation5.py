@@ -115,50 +115,51 @@ def heatmap_awards(fig, all_films, annot= False, sep= False) :
   )
   fig.update_traces(hovertemplate="Probabilité qu'un film obtienne la récompense <br><b>%{x}</b> sachant qu'il a obtenu <br><b>%{y}</b> : %{z:.2f}")
 
-  # Adding horizontal lanes :
-  fig.add_shape(
-    type='line',
-    x0=-0.5, y0=5.5, x1=4.5, y1=5.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=-0.5, y0=4.5, x1=4.5, y1=4.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=5.5, y0=5.5, x1=12.5, y1=5.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=5.5, y0=4.5, x1=12.5, y1=4.5,
-    line=dict(color='black', width=3)
-  )
+  if sep :
+    # Adding horizontal lanes :
+    fig.add_shape(
+      type='line',
+      x0=-0.5, y0=5.5, x1=4.5, y1=5.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=-0.5, y0=4.5, x1=4.5, y1=4.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=5.5, y0=5.5, x1=12.5, y1=5.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=5.5, y0=4.5, x1=12.5, y1=4.5,
+      line=dict(color='black', width=3)
+    )
 
-  
-  # Adding vertical lanes : 
-  fig.add_shape(
-    type='line',
-    x0=4.5, y0=-0.5, x1=4.5, y1=4.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=4.5, y0=5.5, x1=4.5, y1=12.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=5.5, y0=-0.5, x1=5.5, y1=4.5,
-    line=dict(color='black', width=3)
-  )
-  fig.add_shape(
-    type='line',
-    x0=5.5, y0=5.5, x1=5.5, y1=12.5,
-    line=dict(color='black', width=3)
-  )
+    
+    # Adding vertical lanes : 
+    fig.add_shape(
+      type='line',
+      x0=4.5, y0=-0.5, x1=4.5, y1=4.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=4.5, y0=5.5, x1=4.5, y1=12.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=5.5, y0=-0.5, x1=5.5, y1=4.5,
+      line=dict(color='black', width=3)
+    )
+    fig.add_shape(
+      type='line',
+      x0=5.5, y0=5.5, x1=5.5, y1=12.5,
+      line=dict(color='black', width=3)
+    )
 
   return fig
 

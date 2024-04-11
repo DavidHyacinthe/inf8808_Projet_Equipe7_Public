@@ -15,7 +15,6 @@ import dummy
 import template
 import vis_3
 
-from preprocessing_visualisation4 import preprocessing_visualisation_4
 from visualisation_4_a import create_visualisation_4_a
 from visualisation_4_b import create_visualisation_4_b
 
@@ -51,7 +50,11 @@ vis3_list_cats = vis_3_df.category.unique().tolist()
 vis3_list_cats.insert(0, 'All')
 
 #vis_4
-df_actors_vis_4, df_actresses_vis_4, df_directors_vis_4, df_female_directors_vis_4, df_studio_vis_4 = preprocessing_visualisation_4()
+df_actors_vis_4 = pd.read_feather("./src/assets/data/vis_4_df_actors.feather")
+df_actresses_vis_4 = pd.read_feather("./src/assets/data/vis_4_df_actresses.feather")
+df_directors_vis_4 = pd.read_feather("./src/assets/data/vis_4_df_directors.feather")
+df_female_directors_vis_4 = pd.read_feather("./src/assets/data/vis_4_df_female_directors.feather")
+df_studio_vis_4 = pd.read_feather("./src/assets/data/vis_4_df_studio.feather")
 
 #vis_5
 vis_5_df = pd.read_feather("./src/assets/data/df_vis5.feather")
@@ -256,10 +259,20 @@ app.layout = html.Div(
                 
                 dcc.Graph(id="vis4a",
                           className= "waffle",
+                          config = dict(scrollZoom = False,
+                                        showTips = False,
+                                        showAxisDragHandles = False,
+                                        doubleClick = False,
+                                        displayModeBar = False),
                           figure=fig4a),
                 
                 dcc.Graph(id="vis4b",
                           className= "waffle",
+                          config = dict(scrollZoom = False,
+                                        showTips = False,
+                                        showAxisDragHandles = False,
+                                        doubleClick = False,
+                                        displayModeBar = False),
                           figure=fig4b),
                                 
                 html.P("Lorem ipsum dolor sit amet, \
