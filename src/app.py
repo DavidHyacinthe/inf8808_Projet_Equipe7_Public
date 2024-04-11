@@ -371,4 +371,4 @@ def update_vis6(value, fig):
     return visualisation6.rangeslide_callback(value, fig)
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port = 8055)
+    app.run_server(debug=True)
