@@ -70,7 +70,7 @@ def heatmap_awards(fig, all_films, annot= False, sep= False) :
       freq_i_j = (all_films[cat_i] == all_films[cat_j]).sum()
       freq_i_j = all_films[all_films[cat_i] == all_films[cat_j]][[cat_i]].sum()
       freq_i = all_films[cat_i].sum()
-      proba_mat[i][j] = freq_i_j / freq_i
+      proba_mat[i][j] = int(freq_i_j / freq_i *100)
 
       # prompt: display a plotly heatmap
 
@@ -79,9 +79,9 @@ def heatmap_awards(fig, all_films, annot= False, sep= False) :
   if annot :
     for i in range(text_mat.shape[0]) :
       for j in range(text_mat.shape[1]) :
-        if proba_mat[i][j] < 0.05 :
+        if proba_mat[i][j] < 5 :
           text_mat[i][j] = "Faible"
-        elif 0.6 < proba_mat[i][j] < 1 :
+        elif 60 < proba_mat[i][j] < 100 :
           text_mat[i][j] = "Forte"
         else :
           text_mat[i][j] = ""
@@ -113,7 +113,7 @@ def heatmap_awards(fig, all_films, annot= False, sep= False) :
       yaxis_title='Categorie',
       width=1000, height=900
   )
-  fig.update_traces(hovertemplate="Probabilité qu'un film obtienne la récompense <br><b>%{x}</b> sachant qu'il a obtenu <br><b>%{y}</b> : %{z:.2f}")
+  fig.update_traces(hovertemplate="Probabilité qu'un film obtienne la récompense <br><b>%{x}</b> sachant qu'il a obtenu <br><b>%{y}</b> : %{z} % <extra></extra>")
 
   if sep :
     # Adding horizontal lanes :

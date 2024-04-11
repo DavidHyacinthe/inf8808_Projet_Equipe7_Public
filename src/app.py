@@ -20,14 +20,11 @@ from visualisation_4_b import create_visualisation_4_b
 
 app = dash.Dash(__name__)
 app.title = 'Projet Equipe 7 | INF8808'
+server = app.server 
 
 oscar = pd.read_csv("./assets/data/the_oscar_award_withID.csv")
 globe = pd.read_csv("./assets/data/golden_globe_awards_withID.csv")
 meta = pd.read_csv("./assets/data/awards_metadata.csv")
-
-app = dash.Dash(__name__)
-app.title = 'Projet Equipe 7 | INF8808'
-server = app.server 
 
 template.create_custom_theme()
 template.set_default_theme()
@@ -191,8 +188,7 @@ app.layout = html.Div(
                                                                          labelStyle = {'whiteSpace': 'nowrap'}
                                              )]),
                         ]),
-
-                
+           
                 html.P("Lorem ipsum dolor sit amet, \
                         consectetur adipiscing elit. Sed non risus. \
                         Suspendisse lectus tortor, dignissim sit amet, \
@@ -255,6 +251,9 @@ app.layout = html.Div(
                                     ]),
                         ]),
                 
+                html.H3("Qui gagne les récompenses ?",
+                                className = 'h-with-margins'),
+                
                 html.P("Lorem ipsum dolor sit amet, \
                         consectetur adipiscing elit. Sed non risus. \
                         Suspendisse lectus tortor, dignissim sit amet, \
@@ -282,15 +281,20 @@ app.layout = html.Div(
                                         doubleClick = False,
                                         displayModeBar = False),
                           figure=fig4b),
+                
+                html.H3("Quels sont les relations entre récompenses ?",
+                    className = 'h-with-margins'),
                                 
-                html.P("Lorem ipsum dolor sit amet, \
-                        consectetur adipiscing elit. Sed non risus. \
-                        Suspendisse lectus tortor, dignissim sit amet, \
-                        adipiscing nec, ultricies sed, dolor. \
-                        Cras elementum ultrices diam. Maecenas ligula massa, \
-                        varius a, semper congue, euismod non, mi. Proin porttitor, \
-                        orci nec nonummy molestie, enim est eleifend mi, \
-                        non fermentum diam nisl sit amet erat. Duis semper."),
+                html.P("La visualisation suivante permet d'identifier les récompenses \
+                       qui sont souvent obtenues par un même film, ou à l'inverse  \
+                           qui sont rarement obtenues par un même film."),
+                html.P("Par exemple, les récompenses Oscar du Meilleur Film et \
+                    Oscar du Meilleur réalisateur sont souvent obtenues ensemble. \
+                        A l'inverse, Les films qui remportent le Globe du Meilleur Film (Comedie) \
+                            ne remportent que rarement l'Oscar du Meilleur scénario original."),
+                html.P("Les données affichées dans la figure sont des probabilités conditionnelles, \
+                    c'est à dire la probabilité qu'un film obtienne une récompense sachant \
+                        qu'il en a reçu une autre."),
                 
                 dcc.Graph(id="vis5",
                           className= "heatmap",
