@@ -5,9 +5,9 @@ import re
 from plotly.subplots import make_subplots
 
 def preprocess_vis3():
-  gg_df = pd.read_csv('./src/assets/data/golden_globe_awards_withID.csv')
-  osc_df = pd.read_csv('./src/assets/data/the_oscar_award_withID.csv')
-  meta_df = pd.read_csv('./src/assets/data/awards_metadata.csv')
+  gg_df = pd.read_csv('src/assets/data/golden_globe_awards_withID.csv')
+  osc_df = pd.read_csv('src/assets/data/the_oscar_award_withID.csv')
+  meta_df = pd.read_csv('src/assets/data/awards_metadata.csv')
 
   #keeping only those who won, putting aside those who won atypical categories and removing them from main df
   gg_df.category = gg_df.category.str.title()

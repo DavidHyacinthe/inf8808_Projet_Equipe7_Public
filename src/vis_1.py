@@ -16,10 +16,10 @@ def preprocess_vis1():
   # osc_df = pd.read_csv('.\\assets\\data\\the_oscar_award_withID.csv')
   # meta_df = pd.read_csv('.\\assets\\data\\awards_metadata.csv')
   # key_df = pd.read_csv('.\\assets\\data\\awards_keywords.csv')
-  gg_df = pd.read_csv('./src/assets/data/golden_globe_awards_withID.csv')
-  osc_df = pd.read_csv('./src/assets/data/the_oscar_award_withID.csv')
-  meta_df = pd.read_csv('./src/assets/data/awards_metadata.csv')
-  key_df = pd.read_csv('./src/assets/data/awards_keywords.csv')
+  gg_df = pd.read_csv('src/assets/data/golden_globe_awards_withID.csv')
+  osc_df = pd.read_csv('src/assets/data/the_oscar_award_withID.csv')
+  meta_df = pd.read_csv('src/assets/data/awards_metadata.csv')
+  key_df = pd.read_csv('src/assets/data/awards_keywords.csv')
 
   #keeping only those who won, putting aside those who won atypical categories and removing them from main df
   gg_df.category = gg_df.category.str.title()
