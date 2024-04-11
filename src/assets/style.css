@@ -98,7 +98,8 @@ button:hover, button:active {
 
 .dropdown-container-vis1 {
     position: absolute;
-    top: 1376px;
+    color: white;
+    top: 1578px;
     left: 760px;
     z-index: 1;
 }
@@ -106,6 +107,16 @@ button:hover, button:active {
 .dropdown-container-vis1 .Select-control {
     font-size: 16px;
     width: 200px;
+    background-color: #2A2B2E;
+}
+
+.dropdown-container-vis1 .Select-menu-outer {
+    background-color: #2A2B2E;
+    color: white;
+}
+
+.dropdown-container-vis1 .Select-value-label {
+    color: white !important;
 }
 
 .radio-buttons-container-vis3-usa {
@@ -115,6 +126,7 @@ button:hover, button:active {
 
 .dropdown-container-vis3 {
     display: flex;
+    color: white;
     align-items: center;
     margin-top: 13px;
     margin-bottom: 13px;
@@ -123,12 +135,22 @@ button:hover, button:active {
 .dropdown-container-vis3 .Select-control {
     font-size: 16px;
     width: 200px;
+    background-color: #2A2B2E;
+}
+
+.dropdown-container-vis3 .Select-menu-outer {
+    background-color: #2A2B2E;
+    color: white;
+}
+
+.dropdown-container-vis3 .Select-value-label {
+    color: white !important;
 }
 
 .h-with-margins {
     margin-right: 130px;
     margin-left: 130px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .vis6 {

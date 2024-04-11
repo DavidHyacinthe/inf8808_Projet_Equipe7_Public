@@ -93,15 +93,17 @@ app.layout = html.Div(
                         html.I("Hollywood Foreign Press Association."),
                         html.Br(),
                         "Au cours de cet article, nous chercherons à explorer 73 ans de Cinéma pour mettre en évidence les différences et points communs entre les cérémonies."]),
-
-                html.P("Lorem ipsum dolor sit amet, \
-                       consectetur adipiscing elit. Sed non risus. \
-                        Suspendisse lectus tortor, dignissim sit amet, \
-                        adipiscing nec, ultricies sed, dolor. \
-                        Cras elementum ultrices diam. Maecenas ligula massa, \
-                        varius a, semper congue, euismod non, mi. Proin porttitor, \
-                        orci nec nonummy molestie, enim est eleifend mi, \
-                        non fermentum diam nisl sit amet erat. Duis semper."),
+                html.H3("Les Oscars et Golden Globes récompensent-ils les mêmes types de film ?",
+                    className = 'h-with-margins'),
+                html.P(["Les deux cérémonies varient dans les prix descernés. Par exemple, les Golden Globes ont tendance à discerner les films \"drama\" et les comédies, engendrant alors la création de deux catégories différentes pour meilleur acteur ou meilleur film, parmi d'autres. " + \
+                        "Malgré de telles disparités parmi les catégories, on retrouve souvent les mêmes genres et mots-clés parmi les films lauréats.",
+                        html.Br(),
+                        "Cependant, certaines différences sont indéniables, avec l'exemple du prix de la meilleure actrice. Aux Golden Globes, un mot-clé que l'on trouve " + \
+                        "souvent au sein des films dramas lauréats est \"woman director\", créant un contraste alarmant avec les Oscars, où un mot-clé commun parmi les films lauréats du même prix est \"rape\". " + \
+                        "Une telle différence mènerait une personne à se demander si les deux cérémonies cherchent réellement les mêmes critères en dépit d'un consensus vis-à-vis des récompenses dans leur ensemble, et si ces mots-clés sont des coïncidences ou représentent " + \
+                        "la place de la femme au coeur de l'industrie cinématographique, si ce n'est dans ces cérémonies spécifiquement." + \
+                        "Nous vous invitons à explorer le graphique ci-dessous et de juger par vous-même en arrivant à votre propre conclusion."
+                       ]),
                 html.Div(
                         className = 'viz-and-buttons-container',
                         children = [

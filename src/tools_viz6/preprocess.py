@@ -91,7 +91,7 @@ class Ranker:
 def ranking(all_award):
     ranker = Ranker()
     all_award['#award'] = all_award.groupby(['year_ceremony', 'tmdb_id'])['common'].transform('count')
-    all_award = all_award.sort_values(['year_ceremony', '#award', 'tmdb_id'], ascending = [True, False, True])
+    all_award = all_award.sort_values(['year_ceremony', '#award', 'tmdb_id', 'ceremony'], ascending = [True, False, True, True])
     ranks = []
     for i, row in all_award.iterrows():
         ranks.append(ranker.ranks(row['tmdb_id'], row['year_ceremony'], row['#award']))
