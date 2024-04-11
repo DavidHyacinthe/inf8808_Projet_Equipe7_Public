@@ -31,7 +31,7 @@ def get_viz6(oscar_data, globe_data):
 #     del spaced_award
 #     hovered_award = hovered_award.reset_index()
 #     hovered_award = hovered_award.to_feather("tools_viz6/data_vis6.feather")
-    hovered_award = pd.read_feather("src/tools_viz6/data_vis6.feather")
+    hovered_award = pd.read_feather("tools_viz6/data_vis6.feather")
 #     with open("tools_viz6/year_to_x", 'w') as file:
 #         json.dump(year_to_x, file)
 
