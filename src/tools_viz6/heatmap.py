@@ -4,12 +4,6 @@
 import plotly.graph_objects as go
 from tqdm import tqdm
 
-WHITE = 'rgb(255, 255, 255)'
-GREEN = 'rgb(68, 237, 27)'
-PURPLE = 'rgb(213, 69, 244)'
-GOLD = 'rgb(245, 193, 54)'
-GREY = 'rgb(112, 106, 105)'
-
 def get_figure(data, column_width):
     '''
         Generates the heatmap from the given dataset.
@@ -30,40 +24,6 @@ def get_figure(data, column_width):
                             x=data['X'], 
                             y = data['Y'], 
                             z=data['color'], 
-                            colorscale=[
-                                [0/73, WHITE], # base
-                                [1/73, GREEN], 
-                                [2/73, PURPLE], 
-                                [3/73, GOLD],
-                                [10/73, WHITE], # 11 oscars
-                                [11/73, GREEN], 
-                                [12/73, PURPLE], 
-                                [13/73, GOLD],
-                                [20/73, WHITE], # 7 GG
-                                [21/73, GREEN], 
-                                [22/73, PURPLE], 
-                                [23/73, GOLD],
-                                [30/73, WHITE], # 2013
-                                [31/73, GREEN], 
-                                [32/73, PURPLE], 
-                                [33/73, GOLD],
-                                [40/73, WHITE], # 1957
-                                [41/73, GREEN], 
-                                [42/73, PURPLE], 
-                                [43/73, GOLD],
-                                [50/73, WHITE], # 1945
-                                [51/73, GREEN], 
-                                [52/73, PURPLE], 
-                                [53/73, GOLD],
-                                [60/73, WHITE], # 1948
-                                [61/73, GREEN], 
-                                [62/73, PURPLE], 
-                                [63/73, GOLD],
-                                [70/73, WHITE], #1983
-                                [71/73, GREEN],
-                                [72/73, PURPLE],
-                                [73/73, GOLD]
-                                ], 
                             showscale=False, 
                             zmin= 0,
                             hovertext= data['hover'],
@@ -85,10 +45,8 @@ def get_figure(data, column_width):
                    tickvals=data['X'],
                    ticktext=[year_mapping[x] for x in data['X']],
                    tickangle = -60),
-        yaxis = dict(showticklabels=False,),
     )
 
-    fig['layout'].update(plot_bgcolor='white')
 
 
     # fig.update_coloraxes(colorbar=dict(len=0))

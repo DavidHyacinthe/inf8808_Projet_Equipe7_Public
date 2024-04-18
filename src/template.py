@@ -32,7 +32,8 @@ COLORS = {'oscar_base': '#d545f4',
           'globe_base': '#f5c136', 
           'globe_light': '#ffdf89',
           'globe_dark': '#bd8d0a',
-          'both_base': '#44ed1b'}
+          'both_base': '#44ed1b',
+          'unimportant': '#706a69'}
 
 
 def create_custom_theme():

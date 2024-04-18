@@ -1,6 +1,5 @@
 import tools_viz6.preprocess as preproc
 import tools_viz6.heatmap as heatmap
-from tools_viz6.heatmap import WHITE, GREEN, PURPLE, GOLD, GREY 
 import plotly.graph_objects as go
 import copy
 
@@ -9,6 +8,7 @@ import dash_html_components as html
 from dash import dcc
 import pandas as pd
 import json
+from template import COLORS, THEME, create_custom_theme
 
 COLUMN_WIDTH = 1
 year_to_x = None
@@ -19,6 +19,25 @@ config = dict(
             showAxisDragHandles = False,
             doubleClick = False,
             displayModeBar = False)
+
+def hex_to_rgb(hexcode):
+    # Remove '#' if it exists in the beginning of the hexcode
+    if hexcode.startswith('#'):
+        hexcode = hexcode[1:]
+
+    # Convert hex to RGB
+    r = int(hexcode[0:2], 16)
+    g = int(hexcode[2:4], 16)
+    b = int(hexcode[4:6], 16)
+
+    return f'rgb({r},{g},{b})'
+
+WHITE = hex_to_rgb(THEME['background_color'])
+GREEN = hex_to_rgb(COLORS['both_base'])
+PURPLE = hex_to_rgb(COLORS['oscar_base'])
+GOLD = hex_to_rgb(COLORS['globe_base'])
+GREY = hex_to_rgb(COLORS['unimportant'])
+
 
 
 def get_viz6(oscar_data, globe_data):
@@ -41,97 +60,52 @@ def get_viz6(oscar_data, globe_data):
     hovered_award = pd.read_feather("tools_viz6/data_vis6.feather")
 #     with open("tools_viz6/year_to_x", 'w') as file:
 #         json.dump(year_to_x, file)
-
+    create_custom_theme()
     fig = go.Figure()
-
     fig = heatmap.get_figure(hovered_award, COLUMN_WIDTH)
     fig = heatmap.add_lines(hovered_award, fig)
+    fig.update_layout(template='custom_theme')
     fig.update_layout(
+        dragmode=False,
         width=1300,
-        height=650
+        height=650,
+        xaxis=dict(zeroline=False, showgrid=False, linecolor = THEME['axis']), 
+        yaxis=dict(zeroline=False, showgrid=False, showticklabels=False, showline=False, tickvals=[]),
     )
     figa = copy.deepcopy(fig) # GREEN ONLY
     figa.update_traces(colorscale=[
-                                [0/73, WHITE], # base
-                                [1/73, GREEN], 
-                                [2/73, GREY], 
-                                [3/73, GREY],
-                                [10/73, WHITE], # 11 oscars
-                                [11/73, GREEN], 
-                                [12/73, GREY], 
-                                [13/73, GREY],
-                                [20/73, WHITE], # 7 GG
-                                [21/73, GREEN], 
-                                [22/73, GREY], 
-                                [23/73, GREY],
-                                [30/73, WHITE], # 2013
-                                [31/73, GREEN], 
-                                [32/73, GREY], 
-                                [33/73, GREY],
-                                [40/73, WHITE], # 1957
-                                [41/73, GREEN], 
-                                [42/73, GREY], 
-                                [43/73, GREY],
-                                [50/73, WHITE], # 1945
-                                [51/73, GREEN], 
-                                [52/73, GREY], 
-                                [53/73, GREY],
-                                [60/73, WHITE], # 1948
-                                [61/73, GREEN], 
-                                [62/73, GREY], 
-                                [63/73, GREY],
-                                [70/73, WHITE], #1983
-                                [71/73, GREEN],
-                                [72/73, GREY],
-                                [73/73, GREY]
+                                [0/13, WHITE], # base
+                                [1/13, GREEN], 
+                                [2/13, GREY], 
+                                [3/13, GREY],
+                                [10/13, WHITE], # 11 oscars
+                                [11/13, GREEN], 
+                                [12/13, GREY], 
+                                [13/13, GREY],
                                 ])
     
     figb = copy.deepcopy(fig) # MOVIES
     figb.update_traces(colorscale=[
-                                [0/73, WHITE], # base
-                                [1/73, GREY], 
-                                [2/73, GREY], 
-                                [3/73, GREY],
-                                [10/73, WHITE], # 11 oscars
-                                [11/73, GREEN], 
-                                [12/73, PURPLE], 
-                                [13/73, GOLD],
-                                [20/73, WHITE], # 7 GG
-                                [21/73, GREEN], 
-                                [22/73, PURPLE], 
-                                [23/73, GOLD],
-                                [30/73, WHITE], # 2013
-                                [31/73, GREEN], 
-                                [32/73, PURPLE], 
-                                [33/73, GOLD],
-                                [40/73, WHITE], # 1957
-                                [41/73, GREEN], 
-                                [42/73, PURPLE], 
-                                [43/73, GOLD],
-                                [50/73, WHITE], # 1945
-                                [51/73, GREEN], 
-                                [52/73, PURPLE], 
-                                [53/73, GOLD],
-                                [60/73, WHITE], # 1948
-                                [61/73, GREEN], 
-                                [62/73, PURPLE], 
-                                [63/73, GOLD],
-                                [70/73, WHITE], #1983
-                                [71/73, GREEN],
-                                [72/73, PURPLE],
-                                [73/73, GOLD]
+                                [0/13, WHITE], # base
+                                [1/13, GREY], 
+                                [2/13, GREY], 
+                                [3/13, GREY],
+                                [10/13, WHITE], # 11 oscars
+                                [11/13, GREEN], 
+                                [12/13, PURPLE], 
+                                [13/13, GOLD],
                                 ])
     
-
+    fig.update_traces(colorscale=[
+                                [0/13, WHITE], # base
+                                [1/13, GREEN], 
+                                [2/13, PURPLE], 
+                                [3/13, GOLD],
+                                [10/13, WHITE], # 11 oscars
+                                [11/13, GREEN], 
+                                [12/13, PURPLE], 
+                                [13/13, GOLD],
+                                ])
     return figa, figb, fig
 
 
-def rangeslide_callback(value, fig):
-    with open("tools_viz6/year_to_x", 'r') as file:
-        year_to_x = json.loads(file.read())
-    print(year_to_x)
-    min_value, max_value = min(value), max(value)
-    X_left = min(year_to_x[str(float(min_value))])
-    X_right = max(year_to_x[str(float(max_value))])
-    fig['layout']['xaxis']['range'] = [X_left - 1, X_right + 1]
-    return fig

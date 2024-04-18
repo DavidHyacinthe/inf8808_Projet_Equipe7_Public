@@ -26,6 +26,7 @@ h1 {
     margin: 0;
     font-weight: normal;
     text-align: center;
+    margin-top: 250px;
 }
 
 h2 {
@@ -33,7 +34,7 @@ h2 {
     font-family: 'Roboto Slab', 'serif';
     font-weight: normal;
     text-align: center;
-    margin-bottom: 200px;
+    margin-bottom: 250px;
 }
 
 button {
@@ -99,7 +100,7 @@ button:hover, button:active {
 .dropdown-container-vis1 {
     position: absolute;
     color: white;
-    top: 1578px;
+    top: 1613px;
     left: 760px;
     z-index: 1;
 }
@@ -152,6 +153,11 @@ button:hover, button:active {
     margin-left: 130px;
     margin-top: 50px;
 }
+.p-with-margins {
+    margin-right: 130px;
+    margin-left: 130px;
+    margin-top: 30px;
+}
 
 .vis6 {
     display: flex;
@@ -198,12 +204,10 @@ button:hover, button:active {
     text-align: justify;
 }
 
-.slide-container-vis6 {
-    width: 90%;
-}
 
 .all-viz-and-buttons-container > p{
     text-align: justify;
+    align-self: flex-start;
 }
 
 #oscar-img{
@@ -220,3 +224,23 @@ button:hover, button:active {
     height: 700px;
 }
 
+a{
+    color: #fff;
+}
+
+a:hover{
+    color:#f5c136;
+}
+
+ul{
+    align-self: flex-start;
+}
+
+#bottom{
+    height: 50px;
+    margin-bottom: 50px;
+    align-self: flex-start;
+    color: #2A2B2E;
+    user-select: none;
+    -moz-user-select: none;
+}

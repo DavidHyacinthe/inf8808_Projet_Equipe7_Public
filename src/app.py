@@ -59,9 +59,6 @@ vis_5_df = pd.read_feather("./assets/data/df_vis5.feather")
 #Figures
 fig1 = vis_1.vis1(vis1_df1, vis1_df2)
 
-fig2 = go.Figure()
-fig2 = dummy.dummy_line(fig= fig2)
-
 fig3 = vis_3.vis3(vis_3_df1)
 
 fig4a = create_visualisation_4_a(df_actors_vis_4, df_actresses_vis_4, df_directors_vis_4, df_female_directors_vis_4)
@@ -72,10 +69,10 @@ fig5 = visualisation5.heatmap_awards(fig= fig5, all_films= vis_5_df, annot= True
 
 fig6a, fig6b, fig6 = visualisation6.get_viz6(oscar, globe)
 
+# App Layout
 app.layout = html.Div(
     className='content',
     children=[
-        html.H2("INF8808 - Projet Equipe 7"),
         html.H1("Lumière sur l'excellence :"),
         html.H2("Une double analyse des lauréats des Oscars et Golden Globes"),
         html.Img(src="https://pngimg.com/d/academy_awards_PNG34.png",
@@ -92,18 +89,20 @@ app.layout = html.Div(
                         " depuis 1929, ils récompensent l’excellence artistique et technique des films américains et étrangers. Depuis 1944, la cérémonie des Golden Globes remet, elle aussi, des distinctions dans le monde du cinéma, octroyées par l’",
                         html.I("Hollywood Foreign Press Association."),
                         html.Br(),
-                        "Au cours de cet article, nous chercherons à explorer 73 ans de Cinéma pour mettre en évidence les différences et points communs entre les cérémonies."]),
+                        "Au cours de cet article, nous chercherons à explorer 73 ans de Cinéma pour mettre en évidence les différences et points communs entre les cérémonies."],
+                       className = 'p-with-margins'),
                 html.H3("Les Oscars et Golden Globes récompensent-ils les mêmes types de film ?",
                     className = 'h-with-margins'),
-                html.P(["Les deux cérémonies varient dans les prix descernés. Par exemple, les Golden Globes ont tendance à discerner les films \"drama\" et les comédies, engendrant alors la création de deux catégories différentes pour meilleur acteur ou meilleur film, parmi d'autres. " + \
+                html.P(["Les deux cérémonies varient dans les prix decernés. Par exemple, les Golden Globes ont tendance à discerner les films dramatiques et les comédies, engendrant alors la création de deux catégories différentes pour meilleur acteur ou meilleur film, parmi d'autres. " + \
                         "Malgré de telles disparités parmi les catégories, on retrouve souvent les mêmes genres et mots-clés parmi les films lauréats.",
                         html.Br(),
                         "Cependant, certaines différences sont indéniables, avec l'exemple du prix de la meilleure actrice. Aux Golden Globes, un mot-clé que l'on trouve " + \
-                        "souvent au sein des films dramas lauréats est \"woman director\", créant un contraste avec les Oscars, où un mot-clé commun parmi les films lauréats du même prix est \"rape\". " + \
+                        "souvent au sein des films dramatiques lauréats est \"woman director\", créant un contraste avec les Oscars, où un mot-clé commun parmi les films lauréats du même prix est \"rape\". " + \
                         "Une telle différence mènerait une personne à se demander si les deux cérémonies cherchent réellement les mêmes critères en dépit d'un consensus vis-à-vis des récompenses dans leur ensemble, et si ces mots-clés sont des coïncidences ou représentent " + \
-                        "la place de la femme au coeur de l'industrie cinématographique, si ce n'est dans ces cérémonies spécifiquement. " + \
-                        "Nous vous invitons à explorer le graphique ci-dessous et de juger par vous-même en arrivant à votre propre conclusion."
-                       ]),
+                        "la place de la femme au cœur de l'industrie cinématographique, si ce n'est dans ces cérémonies spécifiquement. " + \
+                        "Nous vous invitons à explorer le graphique ci-dessous et de juger par vous-même en arrivant à votre propre conclusion.",
+                       ],
+                       className = 'p-with-margins'),
                 html.Div(
                         className = 'viz-and-buttons-container',
                         children = [
@@ -153,19 +152,20 @@ app.layout = html.Div(
                 
                 html.P("Titanic est l’un des films avec le plus gros budget, \
                        et il semble être un bon investissement : l’un des plus \
-                       gros box-office et le film le plus récompensé de l’histoire \
-                       des cérémonies. Mais est-il toujours nécessaire d’investir \
-                        autant pour avoir un tel box-office et autant de récompenses ? \
-                        A travers cette visualisation, nous vous invitons à explorer \
-                       les liens entre le budget, le box-office et les récompenses, \
-                       en tenant compte de l’inflation. Chaque bulle représente un film ; \
-                        ainsi, en naviguant avec votre souris, vous pourrez découvrir \
-                       différentes informations sur chaque film comme son nombre d’oscar, \
-                        sa date de sortie… Cette visualisation vous permet aussi de voir \
-                       facilement les films ayant remporté le plus d’oscars, de globes \
-                       ou les deux grâce aux boutons situés à droite de l’image. Bon voyage \
-                       à travers les récompenses !",
-                       id = 'vis2-description'),
+                       gros succès de tous les temps au box-office mondial et le \
+                       film le plus récompensé de l’histoire des cérémonies. Mais \
+                       est-il toujours nécessaire d’investir autant pour avoir un tel \
+                       box-office et autant de récompenses ? A travers cette visualisation, \
+                       nous vous invitons à explorer les liens entre le budget, le box-office \
+                       et les récompenses, en tenant compte de l’inflation. Chaque bulle \
+                       représente un film ; ainsi, en naviguant avec votre souris, vous \
+                       pourrez découvrir différentes informations sur chaque film comme \
+                       son nombre d’oscar, sa date de sortie… Cette visualisation vous \
+                       permet aussi de voir facilement les films ayant remporté le plus \
+                       d’oscars, de globes ou les deux grâce aux boutons situés à droite \
+                       de l’image. Bon voyage à travers les récompenses !",
+                       id = 'vis2-description',
+                       className = 'p-with-margins'),
                 
                 html.Div(
                          className = 'viz-and-buttons-container',
@@ -262,7 +262,7 @@ app.layout = html.Div(
                     Toutes les récompenses sont dans l'ordre chronologique.",
                     className = 'p-with-margins'),
                         
-                html.P("Vous pouvez observer que les acteurs et actrices recoivent\
+                html.P("Vous pouvez observer que les acteurs et actrices reçoivent\
                     beaucoup plus de Globes que d'Oscars, parce que les Globes de \
                     meilleur acting sont divisés en quatre sous catégories chaque année : \
                     Meilleure Actrice dans un Drame, Meilleur Acteur dans un Drame, \
@@ -326,7 +326,7 @@ app.layout = html.Div(
                         className = 'p-with-margins'),
 
 
-                html.P("Les cases vertes représentent les catégories pour lesquelles les deux cérémonies ont été en accord lors d'une année précise. Par exemple, en 2017, les Oscars ainsi que les Golden Globes ont décidé de récompenser Damien Chazelle avec le prix du meilleur réalisateur de l'année pour le film LA LA LAND. L'intensité de la couleur d'une case est proportionelle au consensus entre les deux cérémonies.",
+                html.P("Les cases vertes représentent les catégories pour lesquelles les deux cérémonies ont été en accord lors d'une année précise. Par exemple, en 2017, les Oscars ainsi que les Golden Globes ont décidé de récompenser Damien Chazelle avec le prix du meilleur réalisateur de l'année pour le film LA LA LAND. Plus une colonne contient de vert, plus les deux cérémonies ont trouvé un consensus cette année.",
                         className = 'p-with-margins'),
 
                 dcc.Graph(id="vis6a",
@@ -352,10 +352,10 @@ app.layout = html.Div(
                 html.P("En 1945 et 1983, l’écart entre les deux cérémonies quant à leur choix de films récompensés fût le plus petit, étant réduit à un nombre record de 9 films différents. Cependant, il connut son apogée en 1957, creusant un clivage de 22 films entre les deux prix.",
                         className = 'p-with-margins'),
 
-                html.P("Finalement cette visualisation nous permet de voir qu'en 2013, les deux cérémonies étaient en accord sur une grande majorité des catégories (10 récompenses communes), alors qu'en 1957 les deux cérémonies n'avaient seulement trouvé un terrain d'entente vis-à-vis de la récompense du meilleur film, déscernée au Tour du monde en 80 jours.",
+                html.P("Finalement cette visualisation nous permet de voir qu'en 2013, les deux cérémonies étaient en accord sur une grande majorité des catégories (10 récompenses communes), alors qu'en 1957 les deux cérémonies n'avaient seulement trouvé un terrain d'entente vis-à-vis de la récompense du meilleur film, décernée au Tour du monde en 80 jours.",
                         className = 'p-with-margins'),
 
-                html.P("C'est maintenant à vous d'explorer la visualisation ! Vous pouvez utiliser la barre glissante située en dessous de la figure pour limiter la visualisation à un nombre plus limité d'années.",
+                html.P("C'est maintenant à vous d'explorer la visualisation !",
                         className = 'p-with-margins'),
 
                 dcc.Graph(id="vis6",
@@ -363,24 +363,41 @@ app.layout = html.Div(
                             figure=fig6,
                             config = visualisation6.config),
 
-                html.Div(className = "slide-container-vis6",
-                        children = [
-                            dcc.RangeSlider(
-                                                id='vis6-rangeSlider',
-                                                min=1944,
-                                                max=2017,
-                                                step=1,
-                                                value=[1944, 2017],
-                                                marks={year: str(year) for year in range(1945, 2020, 5)},  # Add marks every 5 years
-                                            ),
-                        ])
+                html.H3("Sources et Méthodologie",
+                        className = 'h-with-margins'),
+
+                html.P("Les données des récompenses présentées dans cet article sont tirées de bases de données mises à disposition sur Kaggle:",
+                       className = 'p-with-margins'),
+
+                html.Ul([
+                    html.Li([
+                        html.A("Ensemble de données sur les Oscars de 1927 à 2024", href = "https://www.kaggle.com/datasets/unanimad/the-oscar-award"),
+                        " (depuis mis à jour pour intégrer les données les plus récentes)",
+                    ]),
+                    html.Li(html.A("Ensemble de données sur les Golden Globes de 1944 à 2020", href = "https://www.kaggle.com/datasets/unanimad/golden-globe-awards"))
+                ],
+                    className = 'p-with-margins'),
+
+                html.P([
+                    "Les informations complémentaires sur les films, tels que leur box office, genre ou mots clés, sont tirés de la base de données Publiques ",
+                    html.A("The Movie Database", href = "https://www.themoviedb.org"),
+                    "."
+                    ],
+                    className = 'p-with-margins'),
+
+                html.P("Lors de la définition de notre sujet nous pensions utiliser un autre ensemble de données d'informations sur les films qui allait jusqu'à 2017. Cela nous a amené à fixer un cadre temporel pour les cérémonies de 1944 à 2017.",
+                       className = 'p-with-margins'),
+
+                html.P("Les noms des récompenses ayant pu évoluer au cours des années, nous avons adapté les anciennes récompenses pour coller aux récompenses données actuellement et avoir ainsi un cadre commun pour l'ensemble des années.",
+                       className = 'p-with-margins'),
+                html.Div(children= [html.P("La La Land should have won best picture")], id="bottom")
             ]),
         
     ])
  
 
 
-
+# Callback functions
 @app.callback(
     [Output('vis1', 'figure'),
      Output('dfs-store', 'data')],
@@ -448,23 +465,7 @@ def update_vis3(json_filtered_data, fig):
     fig = vis_3.update_figure(fig,dff)
     return fig
 
-@app.callback(
-    Output('vis6', 'figure'),
-    [Input('vis6-rangeSlider', 'value')],
-    [State('vis6', 'figure')]
-)
-def update_vis6(value, fig):
-    return visualisation6.rangeslide_callback(value, fig)
 
-@app.callback(
-    Output('vis6-rangeSlider', 'value'),
-    Input('vis6-rangeSlider', 'value')
-)
-def slider_minimum_gap(value):
-    min_val, max_val = min(value), max(value)
-    if max_val - min_val < 5:
-        max_val = min_val + 5
-    return [min_val, max_val]
 
 if __name__ == '__main__':
     app.run_server(debug=True, port = 8055)

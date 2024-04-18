@@ -148,13 +148,13 @@ def special_colors(all_award):
    all_award.loc[all_award['tmdb_id'] == 665., 'color'] += 10 # ben Hur
    all_award.loc[all_award['tmdb_id'] == 597., 'color'] += 10 # Titanic
 
-   all_award.loc[all_award['tmdb_id'] == 313369.0, 'color'] += 20 # La La Land
+   all_award.loc[all_award['tmdb_id'] == 313369.0, 'color'] += 10 # La La Land
    
-   all_award.loc[all_award['year_ceremony'] == 2013., 'color'] += 30 # 2013
-   all_award.loc[all_award['year_ceremony'] == 1957., 'color'] += 40 # 1957
-   all_award.loc[all_award['year_ceremony'] == 1945., 'color'] += 50 # 1945
-   all_award.loc[all_award['year_ceremony'] == 1948., 'color'] += 60 # 1948
-   all_award.loc[all_award['year_ceremony'] == 1983., 'color'] += 70 # 1948
+   all_award.loc[all_award['year_ceremony'] == 2013., 'color'] += 10 # 2013
+   all_award.loc[all_award['year_ceremony'] == 1957., 'color'] += 10 # 1957
+   all_award.loc[all_award['year_ceremony'] == 1945., 'color'] += 10 # 1945
+   all_award.loc[all_award['year_ceremony'] == 1948., 'color'] += 10 # 1948
+   all_award.loc[all_award['year_ceremony'] == 1983., 'color'] += 10 # 1948
 
    return all_award
 
