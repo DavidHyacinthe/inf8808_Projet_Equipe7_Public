@@ -6,6 +6,8 @@ body {
     margin: 0;
     height: 100vh;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -17,6 +19,8 @@ header {
 main {
     height: 100%;
     padding-right: 25px;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -73,6 +77,7 @@ button:hover, button:active {
 .viz-and-buttons-container{
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .viz-container {
@@ -91,17 +96,25 @@ button:hover, button:active {
     align-items: center;
 }
 
+.radio-buttons-container label {
+    margin-bottom: 6px;
+}
+
 .radio-buttons-container-vis1 {
     display: flex;
-    align-items: center;
-    margin-top: 5px;
+    align-items: center; 
+}
+
+.radio-buttons-container-vis1 label {
+    margin-bottom: 6px;
 }
 
 .dropdown-container-vis1 {
     position: absolute;
     color: white;
-    top: 1613px;
-    left: 760px;
+    left: 65%;
+    top: 48.72%;
+    transform: translateX(-50%);
     z-index: 1;
 }
 
@@ -123,6 +136,10 @@ button:hover, button:active {
 .radio-buttons-container-vis3-usa {
     display: flex;
     align-items: center;
+}
+
+.radio-buttons-container-vis3-usa label {
+    margin-bottom: 6px;
 }
 
 .dropdown-container-vis3 {
@@ -196,8 +213,33 @@ button:hover, button:active {
     margin: 10px;
 }
 
+#vis1_sorting{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    margin-top: 5.8px;
+}
+
 #vis2-description {
     text-align: justify;
+}
+
+#selection2{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+}
+
+#vis3_sorting{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+}
+
+#include_usa{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
 }
 
 .vis6 > p {

@@ -15,7 +15,9 @@ THEME = {
     'label_font_size': 14,
     'label_background_color': '#ffffff',
     'colorscale': 'Bluyl',
-    'axis' : 'white'
+    'axis' : 'white',
+    'tick_font_size': 15,
+    'title_font_size': 18
 }
 
 # COLORS = {'oscar_base': '#d545f4',
@@ -92,9 +94,15 @@ def create_custom_theme():
     custom_theme.layout.xaxis.linecolor = THEME['axis']
     custom_theme.layout.yaxis.showline = True
     custom_theme.layout.yaxis.linecolor = THEME['axis']
+    custom_theme.layout.xaxis.tickfont.size = THEME['tick_font_size']
+    custom_theme.layout.xaxis.titlefont.size = THEME['title_font_size']
 
     custom_theme.layout.xaxis.gridcolor = THEME['axis']
     custom_theme.layout.yaxis.gridcolor = THEME['axis']
+    custom_theme.layout.yaxis.tickfont.size = THEME['tick_font_size']
+    custom_theme.layout.yaxis.titlefont.size = THEME['title_font_size']
+
+    custom_theme.layout.legend.font.size = THEME['tick_font_size']
 
 
     pio.templates['custom_theme'] = custom_theme
