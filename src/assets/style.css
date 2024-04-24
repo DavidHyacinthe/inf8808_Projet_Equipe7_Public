@@ -228,6 +228,9 @@ button:hover, button:active {
     display: flex;
     align-self: flex-start;
     flex-direction: column;
+    z-index: 1;
+    margin-left: -74.35%;
+    margin-top: -20%;
 }
 
 #vis3_sorting{

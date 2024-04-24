@@ -41,7 +41,7 @@ def create_heatmap_list(df_studio):
     hover_line = []
     for index, row in df_studio1.iterrows():
         z_studio1[line][column] = convert[row['ceremony']][row['category']]
-        hover_line.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+        hover_line.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
         column += 1
         if column == 20:
             line += 1
@@ -100,7 +100,7 @@ def create_heatmap_list(df_studio):
     hover_line = []
     for index, row in df_studio2.iterrows():
         z_studio2[line][column] = convert[row['ceremony']][row['category']]
-        hover_line.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+        hover_line.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
         column += 1
         if column == 20:
             line += 1
@@ -159,7 +159,7 @@ def create_heatmap_list(df_studio):
     
     for index, row in df_studio3.iterrows():
         z_studio3[line][column] = convert[row['ceremony']][row['category']]
-        hover_line.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+        hover_line.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
         column += 1
         if column == 20:
             line += 1
@@ -217,7 +217,7 @@ def create_heatmap_list(df_studio):
     
     for index, row in df_studio4.iterrows():
         z_studio4[line][column] = convert[row['ceremony']][row['category']]
-        hover_line.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+        hover_line.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie :</b>{row['year_film']}")
         column += 1
         if column == 20:
             line += 1
@@ -275,7 +275,7 @@ def create_heatmap_list(df_studio):
     
     for index, row in df_studio5.iterrows():
         z_studio5[line][column] = convert[row['ceremony']][row['category']]
-        hover_line.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+        hover_line.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
         column += 1
         if column == 20:
             line += 1

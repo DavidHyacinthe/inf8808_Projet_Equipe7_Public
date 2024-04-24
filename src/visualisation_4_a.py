@@ -37,7 +37,7 @@ def create_heatmap_actors(df_actors):
         column = 0
         for index, row in df_single_actor.iterrows():
             z_actors[actor][column] = convert[row['ceremony']][row['category']]
-            hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+            hover.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
             column += 1
         z_actors_hover.append(hover)
         actor += 1
@@ -87,7 +87,7 @@ def create_heatmap_actresses(df_actresses):
         column = 0
         for index, row in df_single_actress.iterrows():
             z_actresses[actress][column] = convert[row['ceremony']][row['category']]
-            hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+            hover.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br><b>Nom du film : </b>{row['film']}<br><b>Année de sortie : </b>{row['year_film']}")
             column += 1
         z_actresses_hover.append(hover)
         actress += 1
@@ -138,7 +138,7 @@ def create_heatmap_directors(df_directors):
         column = 0
         for index, row in df_single_director.iterrows():
             z_directors[director][column] = convert[row['ceremony']][row['category']]
-            hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+            hover.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br> <b>Nom du film : </b>{row['film']}<br> <b>Année de sortie : </b>{row['year_film']}")
             column += 1
         z_directors_hover.append(hover)
         director += 1
@@ -189,7 +189,7 @@ def create_heatmap_female_directors(df_female_directors):
         column = 0
         for index, row in df_single_female_director.iterrows():
             z_female_directors[female_director][column] = convert[row['ceremony']][row['category']]
-            hover.append(f"Année de la cérémonie : {row['year_ceremony']}<br>Nom du film : {row['film']}<br>Année de sortie : {row['year_film']}")
+            hover.append(f"<b>Année de la cérémonie : </b>{row['year_ceremony']}<br> <b>Nom du film : </b>{row['film']}<br> <b>Année de sortie : </b>{row['year_film']}")
             column += 1
         z_female_directors_hover.append(hover)
         female_director += 1

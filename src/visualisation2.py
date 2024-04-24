@@ -1,5 +1,5 @@
 '''
-Preprocessing functions for the visualisation part
+Preprocessing functions for the visualisation part (used to create the dataframe)
 '''
 
 import pandas as pd
@@ -77,7 +77,7 @@ def merge_data(df_meta, df_globes, df_oscars):
     df_merged['number_oscars'] = df_merged['number_oscars'].astype(int)
     df_merged['total_awards'] = df_merged['number_globes'] + df_merged['number_oscars']
     df_merged = df_merged[df_merged['total_awards'] > 0]
-    df_merged = df_merged[(df_merged['box_office'] != 0 ) & (df_merged['budget'] != 0)] # à voir
+    df_merged = df_merged[(df_merged['box_office'] != 0 ) & (df_merged['budget'] != 0)] 
     df_merged = df_merged.reset_index(drop=True)
     df_merged['recompense_oscar'] = ['Oscars' if x > 0 else 'None' for x in df_merged['number_oscars']]
     df_merged['recompense_globes'] = ['Golden Globes' if x > 0 else 'None' for x in df_merged['number_globes']]
@@ -100,15 +100,14 @@ def get_bubble_hover_template():
         returns:
             The content of the tooltip
     '''
-    # TODO : Generate tooltip
 
     heatmap_hover_template = (
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Movie : </b>%{customdata[0]}<br>' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Year : </b>%{customdata[1]}<br>' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Budget : </b>%{x} $ (USD)<br>' + 
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Box office: </b>%{y} $ (USD) <br>' + 
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Nombre oscars : </b>%{customdata[2]} <br>' + 
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Nombre globes: </b>%{customdata[3]} <br>' + 
+            '<b>Movie : </b>%{customdata[0]}<br>' +
+            '<b>Year : </b>%{customdata[1]}<br>' +
+            '<b>Budget : </b>%{x} $ (USD)<br>' + 
+            '<b>Box office: </b>%{y} $ (USD) <br>' + 
+            '<b>Nombre oscars : </b>%{customdata[2]} <br>' + 
+            '<b>Nombre globes: </b>%{customdata[3]} <br>' + 
 
             '<extra></extra>' # retirer le trace écrit par défaut
     )
