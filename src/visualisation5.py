@@ -156,6 +156,7 @@ def heatmap_awards(fig, all_films, annot= False, sep= False) :
       xaxis=dict(title="Categorie", title_font=dict(size=18), tickfont=dict(size=15)),
       yaxis=dict(title="Categorie", title_font=dict(size=18), tickfont=dict(size=15)),
       title_font=dict(size=24),  
+      dragmode = False,
       width=1100, height=900
   )
   fig.update_xaxes(showgrid=False)

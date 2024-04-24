@@ -183,7 +183,7 @@ def add_annotations(fig, y_vals1, y_vals2):
                 'y': 0.52,
                 'xanchor': 'center',
                 'x': 0.385},
-                        # }]),
+      dragmode = False,
       annotations = [{'xref': 'paper',
                       'yref': 'paper',
                       'x': 0.5,

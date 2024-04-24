@@ -120,6 +120,7 @@ def add_annotations(fig, y_vals):
                 'automargin': True},
       legend = {'yanchor': 'middle',
                 'y': 0.53},
+      dragmode = False,
       annotations = [
                      {'xref': 'paper',
                       'yref': 'paper',

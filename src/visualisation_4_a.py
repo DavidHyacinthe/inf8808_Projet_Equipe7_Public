@@ -278,6 +278,7 @@ def create_visualisation_4_a(df_actors, df_actresses, df_directors, df_female_di
     # Pour avoir la légende en bas
     fig_visualisation_4_a.update_layout(
         legend_title_text='Catégorie',
+        dragmode = False,
         legend=dict(
             traceorder='normal',
             orientation='h',

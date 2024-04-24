@@ -361,6 +361,7 @@ def create_visualisation_4_b(df_studio):
     # Pour avoir la légende en bas
     fig_visualisation_4_b.update_layout(
         legend_title_text='Catégorie',
+        dragmode = False,
         legend=dict(
             traceorder='normal',
             orientation='h',

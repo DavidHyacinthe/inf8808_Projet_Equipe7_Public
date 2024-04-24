@@ -177,7 +177,7 @@ app.layout = html.Div(
                                                                                 config = dict(scrollZoom = False,
                                                                                               showTips = False,
                                                                                               showAxisDragHandles = False,
-                                                                                              doubleClick = False,
+                                                                                              doubleClick = 'reset',
                                                                                               displayModeBar = False)),
                                                                                 type = "cube")]),
                                      html.Div(
@@ -315,7 +315,13 @@ app.layout = html.Div(
                 
                 dcc.Graph(id="vis5",
                           className= "heatmap",
-                          figure=fig5),
+                          figure=fig5,
+                          config = dict(
+                              scrollZoom = False,
+                              showTips = False,
+                              showAxisDragHandles = False,
+                              doubleClick = False,
+                              displayModeBar = False)),
 
                 
                 html.H3("Les deux récompenses au fil des années",
