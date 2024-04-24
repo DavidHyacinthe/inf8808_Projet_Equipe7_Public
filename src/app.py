@@ -44,6 +44,7 @@ df_preprocessed_2 = pd.read_feather("./assets/data/df_preprocessed_2.feather")
 vis_3_df = pd.read_feather('./assets/data/vis_3_df.feather')
 vis_3_df1 = pd.read_feather('./assets/data/vis_3_df1.feather')
 vis3_list_cats = vis_3_df.category.unique().tolist()
+vis3_list_cats.sort()
 vis3_list_cats.insert(0, 'All')
 
 #vis_4

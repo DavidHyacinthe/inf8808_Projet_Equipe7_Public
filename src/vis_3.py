@@ -31,6 +31,10 @@ def preprocess_vis3():
   awr_df.film = awr_df.film.replace(';', '')
   awr_df.tmdb_id = awr_df.tmdb_id.astype(int)
   awr_df = awr_df.rename(columns = {'tmdb_id': 'id'})
+  awr_df.category.replace({'Directing': 'Best Director', 
+                           'Foreign': 'Foreign Film', 
+                           'Best Picture (Animated)': 'Animated Feature Film'}, 
+                          inplace = True)
   awr_df['Golden Globe'] = awr_df.apply(lambda row: True if row.award == 'Golden Globe' else False, axis = 1)
   awr_df['Oscar'] = awr_df.apply(lambda row: True if row.award == 'Oscar' else False, axis = 1)
 
