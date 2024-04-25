@@ -141,9 +141,9 @@ def vis1(plot_df1, plot_df2):
 def get_vis1_hover_template():
   indent = "&nbsp;"
     
-  return f"<b style='font-family: Roboto Slab; color: black;'>" + indent + \
-                  "<span style='font-family: Roboto; font-weight: normal;'>%{x:.0f}%</span>" + indent + "<br>"\
-                    + indent + "<span style='font-family: Roboto; font-weight: normal;'>%{customdata}</span>" + indent\
+  return f"" + indent + \
+                  "%{x:.0f}%</span>" + indent + "<br>"\
+                    + indent + "%{customdata}</span>" + indent\
                         + '<extra></extra>'
 
 

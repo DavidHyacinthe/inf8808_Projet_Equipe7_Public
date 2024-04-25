@@ -78,10 +78,12 @@ def vis3(plot_df:pd.DataFrame):
   gg_key_vals = df['Golden Globe Percent']
   y_vals = df.iloc[::-1, 0].to_list()
   fig.append_trace(go.Bar(x = osc_key_vals, y = y_vals, marker = {'color': '#AB00FF'},
-                          orientation = 'h', name = "Oscars", base = 0, customdata = plot_df.iloc[:5, :]), 
+                          orientation = 'h', name = "Oscars", base = 0, customdata = plot_df.iloc[:5, :],
+                          hovertemplate=get_vis3_hover_template()), 
                    1, 1)
   fig.append_trace(go.Bar(x = gg_key_vals, y = y_vals, marker = {'color': '#FFBB00'},
-                          orientation = 'h', name = "Golden Globes", base = 0),
+                          orientation = 'h', name = "Golden Globes", base = 0, customdata = plot_df.iloc[:5, :],
+                          hovertemplate=get_vis3_hover_template()),
                   1, 2)
   
   fig.update_layout(
@@ -221,3 +223,9 @@ def update_figure(fig, plot_df):
         fig['data'][i]['y'] = y_vals
 
     return add_annotations(fig, y_vals)
+
+def get_vis3_hover_template():
+  indent = "&nbsp;"
+    
+  return f"" + indent + \
+                  "%{x:.0f}%</span>" + '<extra></extra>'
